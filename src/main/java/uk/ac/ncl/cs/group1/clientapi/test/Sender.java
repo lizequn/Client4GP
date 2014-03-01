@@ -1,4 +1,4 @@
-package uk.ac.ncl.cs.group1.clientapi;
+package uk.ac.ncl.cs.group1.clientapi.test;
 
 import org.apache.log4j.Logger;
 import org.springframework.core.io.FileSystemResource;
@@ -15,40 +15,31 @@ import uk.ac.ncl.cs.group1.clientapi.uitl.HashUtil;
 import uk.ac.ncl.cs.group1.clientapi.uitl.KeyGenerator;
 import uk.ac.ncl.cs.group1.clientapi.uitl.SignUtil;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
 /**
- * @author ZequnLi
- *         Date: 14-2-23
+ * @Auther: Li Zequn
+ * Date: 01/03/14
  */
-public class Test {
-    private final static Logger log = Logger.getLogger(Test.class);
-    private final static String name = "test1";
-    private final static String destination = "test2";
+public class Sender implements Runnable {
+    private static Logger log = Logger.getLogger(Sender.class);
+    private final String name;
+    private RestTemplate restTemplate;
+    private final String destination;
     private final static String url = "http://localhost:8080";
     private final static String registerUrl = url+"/register";
     private final static String initRequestUrl = url+"/initRequest";
-    public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
-        RestTemplate restTemplate = new RestTemplate();
+    public Sender(String name,String destination){
+        this.name=name;
+        this.destination = destination;
+        restTemplate = new RestTemplate();
+    }
 
-        log.info("prepare");
-        //register
-        RegisterEntity entityd = new RegisterEntity();
-        entityd.setName(destination);
-        ResponseEntity<RegisterInfoEntity> infoEntityd = restTemplate.postForEntity(registerUrl, entityd, RegisterInfoEntity.class);
-        if (infoEntityd.getStatusCode()!= HttpStatus.OK){
-            throw new IllegalArgumentException("1");
-        }
-        RegisterInfoEntity entitya = infoEntityd.getBody();
-//        log.info(entity1.getPrivateKey().length);
-        PublicKey publicKey1 = KeyGenerator.unserializedPublicKey(entitya.getPublicKey());
-        PrivateKey privateKey1 = KeyGenerator.unserializeedPrivateKey(entitya.getPrivateKey());
-
-
-
+    private void begin() throws IOException, NoSuchAlgorithmException {
         log.info("begin");
         log.info("1-->register begin");
         //register
@@ -69,7 +60,7 @@ public class Test {
         log.info("generate Header");
         HttpHeaders headers = new HttpHeaders();
         headers.add("name",name);
-        headers.add("auth_token", Base64Coder.encode(SignUtil.sign(privateKey,name.getBytes())));
+        headers.add("auth_token", Base64Coder.encode(SignUtil.sign(privateKey, name.getBytes())));
 
         //initRegister
         log.info("3-->init Register begin");
@@ -106,6 +97,11 @@ public class Test {
         log.info(responseEntity1.getBody().getInfo());
 
 
+
+    }
+
+    @Override
+    public void run() {
 
 
     }
