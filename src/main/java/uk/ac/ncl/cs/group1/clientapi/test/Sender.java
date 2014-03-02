@@ -33,14 +33,15 @@ public class Sender implements Runnable {
     private final static String url = "http://localhost:8080";
     private final static String registerUrl = url+"/register";
     private final static String initRequestUrl = url+"/initRequest";
+    private PublicKey publicKey;
+    private PrivateKey privateKey;
     public Sender(String name,String destination){
         this.name=name;
         this.destination = destination;
         restTemplate = new RestTemplate();
+        register();
     }
-
-    private void begin() throws IOException, NoSuchAlgorithmException {
-        log.info("begin");
+    private void register(){
         log.info("1-->register begin");
         //register
         RegisterEntity entity = new RegisterEntity();
@@ -53,10 +54,13 @@ public class Sender implements Runnable {
         //get private key and public key
         RegisterInfoEntity entity1 = infoEntity.getBody();
 //        log.info(entity1.getPrivateKey().length);
-        PublicKey publicKey = KeyGenerator.unserializedPublicKey(entity1.getPublicKey());
-        PrivateKey privateKey = KeyGenerator.unserializeedPrivateKey(entity1.getPrivateKey());
+        publicKey = KeyGenerator.unserializedPublicKey(entity1.getPublicKey());
+        privateKey = KeyGenerator.unserializeedPrivateKey(entity1.getPrivateKey());
         log.info("2-->get key");
+    }
 
+    private void begin() throws IOException, NoSuchAlgorithmException {
+        log.info("begin");
         log.info("generate Header");
         HttpHeaders headers = new HttpHeaders();
         headers.add("name",name);
@@ -95,14 +99,15 @@ public class Sender implements Runnable {
         }
         log.info("4-->upload end");
         log.info(responseEntity1.getBody().getInfo());
-
-
-
     }
 
     @Override
     public void run() {
-
+        try {
+            begin();
+        } catch (IOException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
 
     }
 }

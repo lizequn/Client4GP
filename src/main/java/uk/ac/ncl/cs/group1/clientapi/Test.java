@@ -10,6 +10,8 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import uk.ac.ncl.cs.group1.clientapi.Entity.*;
+import uk.ac.ncl.cs.group1.clientapi.test.Receiver;
+import uk.ac.ncl.cs.group1.clientapi.test.Sender;
 import uk.ac.ncl.cs.group1.clientapi.uitl.Base64Coder;
 import uk.ac.ncl.cs.group1.clientapi.uitl.HashUtil;
 import uk.ac.ncl.cs.group1.clientapi.uitl.KeyGenerator;
@@ -26,86 +28,14 @@ import java.security.PublicKey;
  */
 public class Test {
     private final static Logger log = Logger.getLogger(Test.class);
-    private final static String name = "test1";
-    private final static String destination = "test2";
-    private final static String url = "http://localhost:8080";
-    private final static String registerUrl = url+"/register";
-    private final static String initRequestUrl = url+"/initRequest";
-    public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
-        RestTemplate restTemplate = new RestTemplate();
 
-        log.info("prepare");
-        //register
-        RegisterEntity entityd = new RegisterEntity();
-        entityd.setName(destination);
-        ResponseEntity<RegisterInfoEntity> infoEntityd = restTemplate.postForEntity(registerUrl, entityd, RegisterInfoEntity.class);
-        if (infoEntityd.getStatusCode()!= HttpStatus.OK){
-            throw new IllegalArgumentException("1");
-        }
-        RegisterInfoEntity entitya = infoEntityd.getBody();
-//        log.info(entity1.getPrivateKey().length);
-        PublicKey publicKey1 = KeyGenerator.unserializedPublicKey(entitya.getPublicKey());
-        PrivateKey privateKey1 = KeyGenerator.unserializeedPrivateKey(entitya.getPrivateKey());
-
-
-
-        log.info("begin");
-        log.info("1-->register begin");
-        //register
-        RegisterEntity entity = new RegisterEntity();
-        entity.setName(name);
-        ResponseEntity<RegisterInfoEntity> infoEntity = restTemplate.postForEntity(registerUrl, entity, RegisterInfoEntity.class);
-        if (infoEntity.getStatusCode()!= HttpStatus.OK){
-            throw new IllegalArgumentException("1");
-        }
-        log.info("1-->register end");
-        //get private key and public key
-        RegisterInfoEntity entity1 = infoEntity.getBody();
-//        log.info(entity1.getPrivateKey().length);
-        PublicKey publicKey = KeyGenerator.unserializedPublicKey(entity1.getPublicKey());
-        PrivateKey privateKey = KeyGenerator.unserializeedPrivateKey(entity1.getPrivateKey());
-        log.info("2-->get key");
-
-        log.info("generate Header");
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("name",name);
-        headers.add("auth_token", Base64Coder.encode(SignUtil.sign(privateKey,name.getBytes())));
-
-        //initRegister
-        log.info("3-->init Register begin");
-        File file = new File("testfile");
-        String unsignedHash = HashUtil.calHashFromFile(file);
-        byte[] bytes = SignUtil.sign(privateKey,unsignedHash.getBytes());
-        InitRequestEntity entity2 = new InitRequestEntity();
-        entity2.setFrom(name);
-        entity2.setTo(destination);
-        entity2.setSignedHash(bytes);
-        HttpEntity req = new HttpEntity<>(entity2, headers);
-        ResponseEntity<InitResponseEntity> responseEntity = restTemplate.postForEntity(initRequestUrl, req, InitResponseEntity.class);
-
-        if (responseEntity.getStatusCode()!= HttpStatus.OK){
-            throw new IllegalArgumentException("1");
-        }
-        InitResponseEntity initResponseEntity = responseEntity.getBody();
-        log.info("3-->init Register end");
-
-        //uploadFile
-        log.info("4-->upload begin");
-        String uploadFileUrl = url+"/upload/"+initResponseEntity.getUrl();
-        MultiValueMap<String,Object> pairs = new LinkedMultiValueMap<>();
-        pairs.add("name","testfile");
-        pairs.add("file",new FileSystemResource(file));
-        pairs.add("uuid",initResponseEntity.getUrl());
-        HttpEntity<MultiValueMap<String,Object>> req1 = new HttpEntity<>(pairs,headers);
-        ResponseEntity<UploadSuccessEntity> responseEntity1 = restTemplate.postForEntity(uploadFileUrl,req1,UploadSuccessEntity.class,headers);
-
-        if (responseEntity1.getStatusCode()!= HttpStatus.OK){
-            throw new IllegalArgumentException("1");
-        }
-        log.info("4-->upload end");
-        log.info(responseEntity1.getBody().getInfo());
-
-
+    public static void main(String[] args) throws IOException, NoSuchAlgorithmException, InterruptedException {
+        Thread thread1 = new Thread(new Sender("test1","test2"));
+        Thread thread2 = new Thread(new Receiver("test2"));
+        // wait finish
+        Thread.sleep(2000);
+        thread1.start();
+        thread2.start();
 
 
     }
