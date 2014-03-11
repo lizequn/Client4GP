@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-import uk.ac.ncl.cs.group1.clientapi.Entity.*;
 import uk.ac.ncl.cs.group1.clientapi.test.Receiver;
 import uk.ac.ncl.cs.group1.clientapi.test.Sender;
 import uk.ac.ncl.cs.group1.clientapi.uitl.Base64Coder;

@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-import uk.ac.ncl.cs.group1.clientapi.Entity.*;
+import uk.ac.ncl.cs.group1.clientapi.entity.Phase1RequestEntity;
+import uk.ac.ncl.cs.group1.clientapi.entity.Phase1ResponseEntity;
+import uk.ac.ncl.cs.group1.clientapi.entity.RegisterResponseEntity;
 import uk.ac.ncl.cs.group1.clientapi.uitl.Base64Coder;
 import uk.ac.ncl.cs.group1.clientapi.uitl.HashUtil;
 import uk.ac.ncl.cs.group1.clientapi.uitl.KeyGenerator;
@@ -20,6 +22,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.util.UUID;
 
 /**
  * @Auther: Li Zequn
@@ -32,7 +35,8 @@ public class Sender implements Runnable {
     private final String destination;
     private final static String url = "http://localhost:8080";
     private final static String registerUrl = url+"/register";
-    private final static String initRequestUrl = url+"/initRequest";
+    private final static String initRequestUrl = url+"/phase1";
+    private final static String getSigUrl= url+"/phase5";
     private PublicKey publicKey;
     private PrivateKey privateKey;
     public Sender(String name,String destination){
@@ -44,22 +48,21 @@ public class Sender implements Runnable {
     private void register(){
         log.info("1-->register begin");
         //register
-        RegisterEntity entity = new RegisterEntity();
-        entity.setName(name);
-        ResponseEntity<RegisterInfoEntity> infoEntity = restTemplate.postForEntity(registerUrl, entity, RegisterInfoEntity.class);
+        String newUrl = registerUrl+"/"+this.name;
+        ResponseEntity<RegisterResponseEntity> infoEntity = restTemplate.postForEntity(newUrl,null, RegisterResponseEntity.class);
         if (infoEntity.getStatusCode()!= HttpStatus.OK){
             throw new IllegalArgumentException("1");
         }
         log.info("1-->register end");
         //get private key and public key
-        RegisterInfoEntity entity1 = infoEntity.getBody();
+        RegisterResponseEntity entity1 = infoEntity.getBody();
 //        log.info(entity1.getPrivateKey().length);
         publicKey = KeyGenerator.unserializedPublicKey(entity1.getPublicKey());
         privateKey = KeyGenerator.unserializeedPrivateKey(entity1.getPrivateKey());
         log.info("2-->get key");
     }
 
-    private void begin() throws IOException, NoSuchAlgorithmException {
+    private UUID begin() throws IOException, NoSuchAlgorithmException {
         log.info("begin");
         log.info("generate Header");
         HttpHeaders headers = new HttpHeaders();
@@ -67,47 +70,60 @@ public class Sender implements Runnable {
         headers.add("auth_token", Base64Coder.encode(SignUtil.sign(privateKey, name.getBytes())));
 
         //initRegister
-        log.info("3-->init Register begin");
+        log.info("phase1 begin");
         File file = new File("testfile");
         String unsignedHash = HashUtil.calHashFromFile(file);
         byte[] bytes = SignUtil.sign(privateKey,unsignedHash.getBytes());
-        InitRequestEntity entity2 = new InitRequestEntity();
-        entity2.setFrom(name);
-        entity2.setTo(destination);
-        entity2.setSignedHash(bytes);
-        HttpEntity req = new HttpEntity<>(entity2, headers);
-        ResponseEntity<InitResponseEntity> responseEntity = restTemplate.postForEntity(initRequestUrl, req, InitResponseEntity.class);
+        System.out.println(Base64Coder.encode(bytes));
+        SignUtil.unSign(publicKey,bytes);
+        MultiValueMap<String,Object> pairs = new LinkedMultiValueMap<>();
+        pairs.add("fromAddress",this.name);
+        pairs.add("toAddress",this.destination);
+        pairs.add("name", "testfile");
+        pairs.add("signedHash",Base64Coder.encode(bytes));
+        pairs.add("file", new FileSystemResource(file));
+
+        HttpEntity<MultiValueMap<String,Object>> req = new HttpEntity<>(pairs,headers);
+        ResponseEntity<Phase1ResponseEntity> responseEntity = restTemplate.postForEntity(initRequestUrl, req, Phase1ResponseEntity.class);
 
         if (responseEntity.getStatusCode()!= HttpStatus.OK){
             throw new IllegalArgumentException("1");
         }
-        InitResponseEntity initResponseEntity = responseEntity.getBody();
-        log.info("3-->init Register end");
+        Phase1ResponseEntity entity = responseEntity.getBody();
+        log.info("phase1 end");
+        return entity.getUuid();
 
-        //uploadFile
-        log.info("4-->upload begin");
-        String uploadFileUrl = url+"/upload/"+initResponseEntity.getUrl();
-        MultiValueMap<String,Object> pairs = new LinkedMultiValueMap<>();
-        pairs.add("name","testfile");
-        pairs.add("file",new FileSystemResource(file));
-        pairs.add("uuid",initResponseEntity.getUrl());
-        HttpEntity<MultiValueMap<String,Object>> req1 = new HttpEntity<>(pairs,headers);
-        ResponseEntity<UploadSuccessEntity> responseEntity1 = restTemplate.postForEntity(uploadFileUrl,req1,UploadSuccessEntity.class,headers);
 
-        if (responseEntity1.getStatusCode()!= HttpStatus.OK){
-            throw new IllegalArgumentException("1");
+    }
+
+    public boolean receive(UUID uuid) {
+        log.info("check 1");
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("name",name);
+        headers.add("auth_token", Base64Coder.encode(SignUtil.sign(privateKey, name.getBytes())));
+        HttpEntity entity = new HttpEntity(headers);
+        String myUrl = getSigUrl+"/"+uuid;
+        ResponseEntity<String> entity1 = restTemplate.postForEntity(myUrl,entity,String.class);
+        if(entity1.getStatusCode() != HttpStatus.OK){
+            return false;
         }
-        log.info("4-->upload end");
-        log.info(responseEntity1.getBody().getInfo());
+        String result = entity1.getBody();
+        System.out.println(result);
+        return true;
     }
 
     @Override
     public void run() {
         try {
-            begin();
+            UUID uuid = begin();
+            while(!receive(uuid)){
+                Thread.sleep(1000);
+            }
         } catch (IOException | NoSuchAlgorithmException e) {
             e.printStackTrace();
+        } catch (InterruptedException ignored) {
         }
+
 
     }
 }

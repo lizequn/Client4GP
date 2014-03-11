@@ -1,16 +1,21 @@
 package uk.ac.ncl.cs.group1.clientapi.test;
 
 import org.apache.log4j.Logger;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.http.client.ClientHttpRequest;
+import org.springframework.web.client.HttpMessageConverterExtractor;
+import org.springframework.web.client.RequestCallback;
 import org.springframework.web.client.RestTemplate;
-import uk.ac.ncl.cs.group1.clientapi.Entity.*;
+import org.apache.commons.io.IOUtils;
+import uk.ac.ncl.cs.group1.clientapi.entity.GetMyExchangeResponseEntity;
+import uk.ac.ncl.cs.group1.clientapi.entity.Phase1RequestEntity;
+import uk.ac.ncl.cs.group1.clientapi.entity.Phase3RequestEntity;
+import uk.ac.ncl.cs.group1.clientapi.entity.RegisterResponseEntity;
 import uk.ac.ncl.cs.group1.clientapi.uitl.Base64Coder;
 import uk.ac.ncl.cs.group1.clientapi.uitl.KeyGenerator;
 import uk.ac.ncl.cs.group1.clientapi.uitl.SignUtil;
 
+import java.io.*;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.List;
@@ -26,9 +31,10 @@ public class Receiver implements Runnable {
     private RestTemplate restTemplate;
     private final static String url = "http://localhost:8080";
     private final static String registerUrl = url+"/register";
-    private final static String initRequestUrl = url+"/initRequest";
+    private final static String initRequestUrl = url+"/phase1";
     private final static String getMyExchangeUrl = url+"/getmyexchange" ;
-    private final static String phrase2Url = url+"/phrase2";
+    private final static String phase2Url = url+"/phase2";
+    private final static String phase3Url = url+"/phase3";
     private PrivateKey privateKey;
     private PublicKey publicKey;
     private HttpHeaders headers;
@@ -41,16 +47,18 @@ public class Receiver implements Runnable {
     public void register(){
         log.info("register");
         //register
-        RegisterEntity entity = new RegisterEntity();
-        entity.setName(name);
-        ResponseEntity<RegisterInfoEntity> infoEntity = restTemplate.postForEntity(registerUrl, entity, RegisterInfoEntity.class);
+        //register
+        String newUrl = registerUrl+"/"+this.name;
+        ResponseEntity<RegisterResponseEntity> infoEntity = restTemplate.postForEntity(newUrl,null, RegisterResponseEntity.class);
         if (infoEntity.getStatusCode()!= HttpStatus.OK){
             throw new IllegalArgumentException("1");
         }
-        RegisterInfoEntity entity2 = infoEntity.getBody();
+        log.info("1-->register end");
+        //get private key and public key
+        RegisterResponseEntity entity1 = infoEntity.getBody();
 //        log.info(entity1.getPrivateKey().length);
-        publicKey = KeyGenerator.unserializedPublicKey(entity2.getPublicKey());
-        privateKey = KeyGenerator.unserializeedPrivateKey(entity2.getPrivateKey());
+        publicKey = KeyGenerator.unserializedPublicKey(entity1.getPublicKey());
+        privateKey = KeyGenerator.unserializeedPrivateKey(entity1.getPrivateKey());
         log.info("generate Header");
         headers = new HttpHeaders();
         headers.add("name",name);
@@ -58,11 +66,11 @@ public class Receiver implements Runnable {
         log.info(headers.get("auth_token"));
     }
 
-    public boolean begin(){
+    public boolean begin() throws FileNotFoundException {
         log.info("begin");
         log.info("get my exchange");
         String myUrl = getMyExchangeUrl+"/"+name;
-        HttpEntity req = new HttpEntity(null,headers);
+        HttpEntity req = new HttpEntity(headers);
         ResponseEntity<GetMyExchangeResponseEntity> response =  restTemplate.postForEntity(myUrl,req, GetMyExchangeResponseEntity.class);
         if(response.getStatusCode() != HttpStatus.OK){
             throw new IllegalStateException();
@@ -75,29 +83,52 @@ public class Receiver implements Runnable {
             return false;
         }
 
-        log.info("begin phrase2");
+        log.info("begin phase2");
         UUID uuid = list.get(0);
         log.info("ID:"+uuid);
-        String myUrl1 = phrase2Url+"/"+name+"/"+uuid;
-        ResponseEntity<InitRequestEntity> responseEntity = restTemplate.postForEntity(myUrl1,req,InitRequestEntity.class);
+        String myUrl1 = phase2Url+"/"+name+"/"+uuid;
+        ResponseEntity<Phase1RequestEntity> responseEntity = restTemplate.postForEntity(myUrl1,req,Phase1RequestEntity.class);
         if(responseEntity.getStatusCode() != HttpStatus.OK){
             throw new IllegalStateException();
         }
-        InitRequestEntity requestEntity = responseEntity.getBody();
-        log.info("finish phrase2");
+        Phase1RequestEntity requestEntity = responseEntity.getBody();
+        log.info("finish phase2");
+        log.info("begin phase3");
+        byte[] bytes = requestEntity.getSignedHash();
+        byte[] signedBytes= SignUtil.sign(privateKey,bytes);
+        String myUrl2 = phase3Url+"/"+name+"/"+uuid;
+        Phase3RequestEntity entity = new Phase3RequestEntity();
+        entity.setReceiptHash(signedBytes);
+        RequestCallback requestCallback = new RequestCallback() {
+            @Override
+            public void doWithRequest(ClientHttpRequest clientHttpRequest) throws IOException {
+                String fileName = clientHttpRequest.getHeaders().get("FileName").get(0);
+                InputStream fis = new FileInputStream(new File(fileName+"result"));
+                IOUtils.copy(fis,clientHttpRequest.getBody());
+            }
+        };
+        final HttpMessageConverterExtractor<String> responseExtractor = new HttpMessageConverterExtractor<String>(String.class,restTemplate.getMessageConverters());
+        restTemplate.execute(myUrl2, HttpMethod.POST,requestCallback,responseExtractor);
+
+        log.info("end phase3");
+        log.info("finish");
         return true;
     }
 
     @Override
     public void run() {
         int i =0;
-        while (!begin())  {
-            i++;
-            log.info("counter:"+i);
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
+        try {
+            while (!begin())  {
+                i++;
+                log.info("counter:"+i);
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException ignored) {
+                }
             }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
 
     }

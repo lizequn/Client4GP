@@ -1,4 +1,4 @@
-package uk.ac.ncl.cs.group1.clientapi.Entity;
+package uk.ac.ncl.cs.group1.clientapi.entity;
 
 import java.util.List;
 import java.util.UUID;
