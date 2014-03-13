@@ -75,7 +75,7 @@ public class Sender implements Runnable {
         String unsignedHash = HashUtil.calHashFromFile(file);
         byte[] bytes = SignUtil.sign(privateKey,unsignedHash.getBytes());
         System.out.println(Base64Coder.encode(bytes));
-        SignUtil.unSign(publicKey,bytes);
+       // SignUtil.unSign(publicKey,bytes);
         MultiValueMap<String,Object> pairs = new LinkedMultiValueMap<>();
         pairs.add("fromAddress",this.name);
         pairs.add("toAddress",this.destination);

@@ -1,5 +1,6 @@
 package uk.ac.ncl.cs.group1.clientapi.test;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.log4j.Logger;
 import org.springframework.http.*;
 import org.springframework.http.client.ClientHttpRequest;
@@ -12,6 +13,7 @@ import uk.ac.ncl.cs.group1.clientapi.entity.Phase1RequestEntity;
 import uk.ac.ncl.cs.group1.clientapi.entity.Phase3RequestEntity;
 import uk.ac.ncl.cs.group1.clientapi.entity.RegisterResponseEntity;
 import uk.ac.ncl.cs.group1.clientapi.uitl.Base64Coder;
+import uk.ac.ncl.cs.group1.clientapi.uitl.HashUtil;
 import uk.ac.ncl.cs.group1.clientapi.uitl.KeyGenerator;
 import uk.ac.ncl.cs.group1.clientapi.uitl.SignUtil;
 
@@ -94,11 +96,14 @@ public class Receiver implements Runnable {
         Phase1RequestEntity requestEntity = responseEntity.getBody();
         log.info("finish phase2");
         log.info("begin phase3");
+
         byte[] bytes = requestEntity.getSignedHash();
-        byte[] signedBytes= SignUtil.sign(privateKey,bytes);
+        String hashedBytes = HashUtil.calHash(bytes);
+        log.info("the length of bytes: " + bytes.length);
+        byte[] sigB = SignUtil.sign(privateKey,hashedBytes.getBytes());
         String myUrl2 = phase3Url+"/"+name+"/"+uuid;
         Phase3RequestEntity entity = new Phase3RequestEntity();
-        entity.setReceiptHash(signedBytes);
+        entity.setReceiptHash(sigB);
         RequestCallback requestCallback = new RequestCallback() {
             @Override
             public void doWithRequest(ClientHttpRequest clientHttpRequest) throws IOException {

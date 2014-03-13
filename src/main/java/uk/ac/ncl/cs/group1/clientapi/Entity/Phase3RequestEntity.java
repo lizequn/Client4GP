@@ -7,6 +7,7 @@ package uk.ac.ncl.cs.group1.clientapi.entity;
 public class Phase3RequestEntity {
     private byte[] receiptHash;
 
+
     public byte[] getReceiptHash() {
         return receiptHash;
     }
@@ -14,5 +15,4 @@ public class Phase3RequestEntity {
     public void setReceiptHash(byte[] receiptHash) {
         this.receiptHash = receiptHash;
     }
-
 }

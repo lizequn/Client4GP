@@ -17,7 +17,7 @@ public class SignUtil {
     public static byte[] sign(PrivateKey privateKey,byte[] bytes){
         Cipher cipher = null;
         try {
-            cipher = Cipher.getInstance("RSA");
+            cipher = Cipher.getInstance("RSA/ECB/PKCS1PADDING");
             cipher.init(Cipher.ENCRYPT_MODE,privateKey);
             return cipher.doFinal(bytes);
             //todo finish exception
@@ -41,7 +41,7 @@ public class SignUtil {
     public static byte[] unSign(PublicKey publicKey,byte[] bytes){
         Cipher cipher = null;
         try {
-            cipher = Cipher.getInstance("RSA");
+            cipher = Cipher.getInstance("RSA/ECB/PKCS1PADDING");
             cipher.init(Cipher.DECRYPT_MODE,publicKey);
             return cipher.doFinal(bytes);
             //todo finish exception

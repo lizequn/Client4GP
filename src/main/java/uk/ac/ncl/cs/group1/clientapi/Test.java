@@ -29,8 +29,10 @@ public class Test {
     private final static Logger log = Logger.getLogger(Test.class);
 
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException, InterruptedException {
-        Thread thread1 = new Thread(new Sender("test1","test2"));
-        Thread thread2 = new Thread(new Receiver("test2"));
+        String senderName = "test13";
+        String receiverName = "test14";
+        Thread thread1 = new Thread(new Sender(senderName,receiverName));
+        Thread thread2 = new Thread(new Receiver(receiverName));
         // wait finish
         Thread.sleep(2000);
         thread1.start();
