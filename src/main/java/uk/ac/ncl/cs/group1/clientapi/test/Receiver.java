@@ -8,6 +8,7 @@ import org.springframework.web.client.HttpMessageConverterExtractor;
 import org.springframework.web.client.RequestCallback;
 import org.springframework.web.client.RestTemplate;
 import org.apache.commons.io.IOUtils;
+import uk.ac.ncl.cs.group1.clientapi.clientserver.MyRestTemplate;
 import uk.ac.ncl.cs.group1.clientapi.entity.GetMyExchangeResponseEntity;
 import uk.ac.ncl.cs.group1.clientapi.entity.Phase1RequestEntity;
 import uk.ac.ncl.cs.group1.clientapi.entity.Phase3RequestEntity;
@@ -68,7 +69,8 @@ public class Receiver implements Runnable {
         log.info(headers.get("auth_token"));
     }
 
-    public boolean begin() throws FileNotFoundException {
+    public boolean begin() throws IOException {
+        restTemplate = MyRestTemplate.getTemplate(this.name,Base64Coder.encode(SignUtil.sign(privateKey, name.getBytes())));
         log.info("begin");
         log.info("get my exchange");
         String myUrl = getMyExchangeUrl+"/"+name;
@@ -105,16 +107,22 @@ public class Receiver implements Runnable {
         Phase3RequestEntity entity = new Phase3RequestEntity();
         entity.setReceiptHash(sigB);
         RequestCallback requestCallback = new RequestCallback() {
+
             @Override
             public void doWithRequest(ClientHttpRequest clientHttpRequest) throws IOException {
-                String fileName = clientHttpRequest.getHeaders().get("FileName").get(0);
-                InputStream fis = new FileInputStream(new File(fileName+"result"));
+
+                System.out.println(clientHttpRequest.getHeaders());
+                //String fileName = clientHttpRequest.getHeaders().get("FileName").get(0);
+                InputStream fis = new FileInputStream(new File("result1"));
                 IOUtils.copy(fis,clientHttpRequest.getBody());
             }
         };
         final HttpMessageConverterExtractor<String> responseExtractor = new HttpMessageConverterExtractor<String>(String.class,restTemplate.getMessageConverters());
-        restTemplate.execute(myUrl2, HttpMethod.POST,requestCallback,responseExtractor);
-
+       // restTemplate.execute(myUrl2, HttpMethod.POST,requestCallback,responseExtractor);
+        byte[] doc =  restTemplate.postForObject(myUrl2,entity,byte[].class);
+        OutputStream fis = new FileOutputStream(new File("result1"));
+        fis.write(doc);
+        fis.close();
         log.info("end phase3");
         log.info("finish");
         return true;
@@ -132,7 +140,7 @@ public class Receiver implements Runnable {
                 } catch (InterruptedException ignored) {
                 }
             }
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
 
