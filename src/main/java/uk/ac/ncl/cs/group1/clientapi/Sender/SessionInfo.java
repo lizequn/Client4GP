@@ -7,6 +7,7 @@ import java.util.UUID;
  * Date: 14/03/14
  */
 public class SessionInfo {
+    private String sessionName;
     private UUID uuid;
 
     public UUID getUuid() {

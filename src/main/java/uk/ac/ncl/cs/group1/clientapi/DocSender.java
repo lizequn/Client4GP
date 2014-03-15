@@ -10,7 +10,7 @@ import java.util.UUID;
  * Date: 14/03/14
  */
 public interface DocSender {
-    UUID sendDoc(KeyPairStore keyPairStore,File file);
+    UUID sendDoc(KeyPairStore keyPairStore,File file,String sessionName);
     void receiveReceipt(long intervalTime,UUID uuid,ReceiptCallBack callBack);
 
 }
