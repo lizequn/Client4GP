@@ -1,5 +1,7 @@
 package uk.ac.ncl.cs.group1.clientapi.Sender;
 
+import uk.ac.ncl.cs.group1.clientapi.callback.ReceiptCallBack;
+
 import java.io.*;
 
 /**

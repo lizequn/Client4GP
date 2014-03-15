@@ -1,4 +1,4 @@
-package uk.ac.ncl.cs.group1.clientapi.Receiver;
+package uk.ac.ncl.cs.group1.clientapi.callback;
 
 import java.util.List;
 import java.util.UUID;
