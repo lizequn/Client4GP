@@ -5,5 +5,5 @@ package uk.ac.ncl.cs.group1.clientapi.callback;
  * Date: 15/03/14
  */
 public interface FileStore {
-    void storeFile(byte[] file);
+    void storeFile(byte[] file,String name);
 }

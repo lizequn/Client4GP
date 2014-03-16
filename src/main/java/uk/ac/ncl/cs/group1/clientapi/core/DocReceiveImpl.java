@@ -120,8 +120,8 @@ public class DocReceiveImpl extends Resource implements DocReceive {
 //        final HttpMessageConverterExtractor<String> responseExtractor = new HttpMessageConverterExtractor<String>(String.class,restTemplate.getMessageConverters());
         // restTemplate.execute(myUrl2, HttpMethod.POST,requestCallback,responseExtractor);
         byte[] doc =  restTemplate.postForObject(myUrl2,entity,byte[].class);
-        receiptCallBack.getReceipt(bytes);
-        fileStore.storeFile(doc);
+        receiptCallBack.getReceipt(bytes,uuid.toString()+".rec");
+        fileStore.storeFile(doc,uuid.toString());
         log.info("finish ID "+uuid);
     }
 

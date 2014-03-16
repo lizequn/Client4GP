@@ -82,7 +82,7 @@ public class DocSenderImpl extends Resource implements DocSender {
                     }
                     Gson gson = new Gson();
                     Phase3RequestEntity result = gson.fromJson(entity1.getBody(), Phase3RequestEntity.class);
-                    callBack.getReceipt(result.getReceiptHash());
+                    callBack.getReceipt(result.getReceiptHash(),uuid.toString());
                 }
             }
         };
