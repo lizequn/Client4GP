@@ -7,7 +7,7 @@ import uk.ac.ncl.cs.group1.clientapi.Register;
 import uk.ac.ncl.cs.group1.clientapi.Resource;
 import uk.ac.ncl.cs.group1.clientapi.TTPUrl;
 import uk.ac.ncl.cs.group1.clientapi.entity.RegisterResponseEntity;
-import uk.ac.ncl.cs.group1.clientapi.uitl.KeyGenerator;
+import uk.ac.ncl.cs.group1.clientapi.util.KeyGenerator;
 
 import java.security.PrivateKey;
 import java.security.PublicKey;

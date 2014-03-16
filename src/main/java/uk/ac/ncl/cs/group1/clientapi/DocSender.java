@@ -12,7 +12,7 @@ import java.util.UUID;
  * Date: 14/03/14
  */
 public interface DocSender {
-    UUID sendDoc(KeyPairStore keyPairStore,File file,String address) throws IOException;
+    UUID sendDoc(File file,String address) throws IOException;
     void receiveReceipt(long intervalTime,UUID uuid,ReceiptCallBack callBack);
 
 }

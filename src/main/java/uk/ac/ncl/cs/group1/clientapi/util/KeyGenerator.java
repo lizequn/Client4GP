@@ -1,4 +1,4 @@
-package uk.ac.ncl.cs.group1.clientapi.uitl;
+package uk.ac.ncl.cs.group1.clientapi.util;
 
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;

@@ -1,4 +1,4 @@
-package uk.ac.ncl.cs.group1.clientapi.uitl;
+package uk.ac.ncl.cs.group1.clientapi.util;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;

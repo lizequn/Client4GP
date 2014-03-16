@@ -13,10 +13,10 @@ import uk.ac.ncl.cs.group1.clientapi.entity.GetMyExchangeResponseEntity;
 import uk.ac.ncl.cs.group1.clientapi.entity.Phase1RequestEntity;
 import uk.ac.ncl.cs.group1.clientapi.entity.Phase3RequestEntity;
 import uk.ac.ncl.cs.group1.clientapi.entity.RegisterResponseEntity;
-import uk.ac.ncl.cs.group1.clientapi.uitl.Base64Coder;
-import uk.ac.ncl.cs.group1.clientapi.uitl.HashUtil;
-import uk.ac.ncl.cs.group1.clientapi.uitl.KeyGenerator;
-import uk.ac.ncl.cs.group1.clientapi.uitl.SignUtil;
+import uk.ac.ncl.cs.group1.clientapi.util.Base64Coder;
+import uk.ac.ncl.cs.group1.clientapi.util.HashUtil;
+import uk.ac.ncl.cs.group1.clientapi.util.KeyGenerator;
+import uk.ac.ncl.cs.group1.clientapi.util.SignUtil;
 
 import java.io.*;
 import java.security.PrivateKey;

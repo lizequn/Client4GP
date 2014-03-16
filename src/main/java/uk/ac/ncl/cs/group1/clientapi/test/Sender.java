@@ -9,13 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-import uk.ac.ncl.cs.group1.clientapi.entity.Phase1RequestEntity;
 import uk.ac.ncl.cs.group1.clientapi.entity.Phase1ResponseEntity;
 import uk.ac.ncl.cs.group1.clientapi.entity.RegisterResponseEntity;
-import uk.ac.ncl.cs.group1.clientapi.uitl.Base64Coder;
-import uk.ac.ncl.cs.group1.clientapi.uitl.HashUtil;
-import uk.ac.ncl.cs.group1.clientapi.uitl.KeyGenerator;
-import uk.ac.ncl.cs.group1.clientapi.uitl.SignUtil;
+import uk.ac.ncl.cs.group1.clientapi.util.Base64Coder;
+import uk.ac.ncl.cs.group1.clientapi.util.HashUtil;
+import uk.ac.ncl.cs.group1.clientapi.util.KeyGenerator;
+import uk.ac.ncl.cs.group1.clientapi.util.SignUtil;
 
 import java.io.File;
 import java.io.IOException;

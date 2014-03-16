@@ -1,5 +1,6 @@
 package uk.ac.ncl.cs.group1.clientapi.core;
 
+import com.google.gson.Gson;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -10,13 +11,14 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import uk.ac.ncl.cs.group1.clientapi.DocSender;
 import uk.ac.ncl.cs.group1.clientapi.Resource;
-import uk.ac.ncl.cs.group1.clientapi.TTPUrl;
+import uk.ac.ncl.cs.group1.clientapi.TTPURL;
 import uk.ac.ncl.cs.group1.clientapi.callback.ReceiptCallBack;
 import uk.ac.ncl.cs.group1.clientapi.clientserver.MyRestTemplate;
 import uk.ac.ncl.cs.group1.clientapi.entity.Phase1ResponseEntity;
-import uk.ac.ncl.cs.group1.clientapi.uitl.Base64Coder;
-import uk.ac.ncl.cs.group1.clientapi.uitl.HashUtil;
-import uk.ac.ncl.cs.group1.clientapi.uitl.SignUtil;
+import uk.ac.ncl.cs.group1.clientapi.entity.Phase3RequestEntity;
+import uk.ac.ncl.cs.group1.clientapi.util.Base64Coder;
+import uk.ac.ncl.cs.group1.clientapi.util.HashUtil;
+import uk.ac.ncl.cs.group1.clientapi.util.SignUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,18 +29,16 @@ import java.util.UUID;
  * Date: 15/03/14
  */
 public class DocSenderImpl extends Resource implements DocSender {
-    private RestTemplate restTemplate;
-
+    private final RestTemplate restTemplate;
+    private final KeyPairStore keyPairStore;
+    public DocSenderImpl(KeyPairStore keyPairStore){
+        this.keyPairStore = keyPairStore;
+        restTemplate = MyRestTemplate.getTemplate(keyPairStore.getId(), Base64Coder.encode(SignUtil.sign(keyPairStore.getPrivateKey(), keyPairStore.getId().getBytes())));
+    }
 
     @Override
-    public UUID sendDoc(KeyPairStore keyPairStore, File file, String address) throws IOException {
+    public UUID sendDoc(File file, String address) throws IOException {
         log.info("send doc begin "+ keyPairStore.getId());
-
-
-        if(restTemplate == null){
-            restTemplate = MyRestTemplate.getTemplate(keyPairStore.getId(), Base64Coder.encode(SignUtil.sign(keyPairStore.getPrivateKey(), keyPairStore.getId().getBytes())));
-        }
-
         //initRegister
         log.info("phase1 begin");
 
@@ -52,7 +52,7 @@ public class DocSenderImpl extends Resource implements DocSender {
         pairs.add("file", new FileSystemResource(file));
 
         HttpEntity<MultiValueMap<String,Object>> req = new HttpEntity<>(pairs);
-        ResponseEntity<Phase1ResponseEntity> responseEntity = restTemplate.postForEntity(TTPUrl.phase1RequestUrl, req, Phase1ResponseEntity.class);
+        ResponseEntity<Phase1ResponseEntity> responseEntity = restTemplate.postForEntity(TTPURL.phase1RequestUrl, req, Phase1ResponseEntity.class);
         //todo
         if (responseEntity.getStatusCode()!= HttpStatus.OK){
             throw new IllegalArgumentException("1");
@@ -62,7 +62,30 @@ public class DocSenderImpl extends Resource implements DocSender {
     }
 
     @Override
-    public void receiveReceipt(long intervalTime, UUID uuid, ReceiptCallBack callBack) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void receiveReceipt(final long intervalTime,final UUID uuid,final ReceiptCallBack callBack) {
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                int i = 10;
+                while(i>0){
+                    log.info("begin receive");
+                    String myUrl = TTPURL.phase5SigUrl+"/"+uuid;
+                    ResponseEntity<String> entity1 = restTemplate.postForEntity(myUrl,null,String.class);
+                    if(entity1.getStatusCode() != HttpStatus.OK){
+                        try {
+                            Thread.sleep(intervalTime);
+                        } catch (InterruptedException ignored) {
+                        }
+                        i++;
+                        continue;
+                    }
+                    Gson gson = new Gson();
+                    Phase3RequestEntity result = gson.fromJson(entity1.getBody(), Phase3RequestEntity.class);
+                    callBack.getReceipt(result.getReceiptHash());
+                }
+            }
+        };
+        new Thread(runnable).start();
     }
 }

@@ -11,15 +11,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import uk.ac.ncl.cs.group1.clientapi.test.Receiver;
 import uk.ac.ncl.cs.group1.clientapi.test.Sender;
-import uk.ac.ncl.cs.group1.clientapi.uitl.Base64Coder;
-import uk.ac.ncl.cs.group1.clientapi.uitl.HashUtil;
-import uk.ac.ncl.cs.group1.clientapi.uitl.KeyGenerator;
-import uk.ac.ncl.cs.group1.clientapi.uitl.SignUtil;
 
 import java.io.*;
 import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
 
 /**
  * @author ZequnLi

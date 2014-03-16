@@ -14,9 +14,9 @@ import java.util.UUID;
  * Date: 15/03/14
  */
 public interface DocReceive {
-    List<UUID> checkExistCommunication(KeyPairStore keyPairStore);
-    void asyCheckExistCommunication(KeyPairStore keyPairStore,CheckCallBack callBack,long intervalTime);
-    void getFileAndReceipt(KeyPairStore keyPairStore,FileStore fileStore,ReceiptCallBack receiptCallBack);
+    List<UUID> checkExistCommunication();
+    void asyCheckExistCommunication(CheckCallBack callBack,long intervalTime);
+    void getFileAndReceipt(UUID uuid,FileStore fileStore,ReceiptCallBack receiptCallBack);
     boolean verifyFileWithReceipt(File file,byte[] receipt);
     boolean verifyFileWithReceipt(File file,File receipt);
 }
