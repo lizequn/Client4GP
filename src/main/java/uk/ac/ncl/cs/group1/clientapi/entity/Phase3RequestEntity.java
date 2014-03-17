@@ -5,14 +5,14 @@ package uk.ac.ncl.cs.group1.clientapi.entity;
  * Date: 11/03/14
  */
 public class Phase3RequestEntity {
-    private byte[] receiptHash;
+    private String receiptHash;
 
 
-    public byte[] getReceiptHash() {
+    public String getReceiptHash() {
         return receiptHash;
     }
 
-    public void setReceiptHash(byte[] receiptHash) {
+    public void setReceiptHash(String receiptHash) {
         this.receiptHash = receiptHash;
     }
 }

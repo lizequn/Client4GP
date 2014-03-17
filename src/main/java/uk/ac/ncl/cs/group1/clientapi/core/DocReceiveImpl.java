@@ -100,12 +100,12 @@ public class DocReceiveImpl extends Resource implements DocReceive {
         Phase1RequestEntity requestEntity = responseEntity.getBody();
 
 
-        byte[] bytes = requestEntity.getSignedHash();
+        byte[] bytes = Base64Coder.decode(requestEntity.getSignedHash());
         String hashedBytes = HashUtil.calHash(bytes);
         byte[] sigB = SignUtil.sign(keyPairStore.getPrivateKey(),hashedBytes.getBytes());
         String myUrl2 = TTPURL.phase3Url+"/"+keyPairStore.getId()+"/"+uuid;
         Phase3RequestEntity entity = new Phase3RequestEntity();
-        entity.setReceiptHash(sigB);
+        entity.setReceiptHash(Base64Coder.encode(sigB));
 //        RequestCallback requestCallback = new RequestCallback() {
 //
 //            @Override
@@ -119,9 +119,13 @@ public class DocReceiveImpl extends Resource implements DocReceive {
 //        };
 //        final HttpMessageConverterExtractor<String> responseExtractor = new HttpMessageConverterExtractor<String>(String.class,restTemplate.getMessageConverters());
         // restTemplate.execute(myUrl2, HttpMethod.POST,requestCallback,responseExtractor);
-        byte[] doc =  restTemplate.postForObject(myUrl2,entity,byte[].class);
+        ResponseEntity<byte[]> result =  restTemplate.postForEntity(myUrl2,entity,byte[].class);
+        if(result.getStatusCode() != HttpStatus.OK){
+            throw new IllegalStateException(new String(result.getBody()));
+        }
+
         receiptCallBack.getReceipt(bytes,uuid.toString()+".rec");
-        fileStore.storeFile(doc,uuid.toString());
+        fileStore.storeFile(result.getBody(),uuid.toString());
         log.info("finish ID "+uuid);
     }
 

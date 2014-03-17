@@ -6,13 +6,13 @@ package uk.ac.ncl.cs.group1.clientapi.entity;
  */
 public class RegisterResponseEntity {
     private String id;
-    private byte[] publicKey;
-    private byte[] privateKey;
+    private String publicKey;
+    private String privateKey;
 
     public RegisterResponseEntity(){
 
     }
-    public RegisterResponseEntity(String id,byte[] publicKey, byte[] privateKey){
+    public RegisterResponseEntity(String id,String publicKey, String privateKey){
         this.id = id;
         this.publicKey = publicKey;
         this.privateKey = privateKey;
@@ -26,19 +26,19 @@ public class RegisterResponseEntity {
         this.id = id;
     }
 
-    public byte[] getPrivateKey() {
-        return privateKey;
-    }
-
-    public void setPrivateKey(byte[] privateKey) {
-        this.privateKey = privateKey;
-    }
-
-    public byte[] getPublicKey() {
+    public String getPublicKey() {
         return publicKey;
     }
 
-    public void setPublicKey(byte[] publicKey) {
+    public void setPublicKey(String publicKey) {
         this.publicKey = publicKey;
+    }
+
+    public String getPrivateKey() {
+        return privateKey;
+    }
+
+    public void setPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
     }
 }

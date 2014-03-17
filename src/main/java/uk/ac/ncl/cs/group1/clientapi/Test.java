@@ -15,8 +15,6 @@ import uk.ac.ncl.cs.group1.clientapi.core.DocReceiveImpl;
 import uk.ac.ncl.cs.group1.clientapi.core.DocSenderImpl;
 import uk.ac.ncl.cs.group1.clientapi.core.KeyPairStore;
 import uk.ac.ncl.cs.group1.clientapi.core.RegisterImpl;
-import uk.ac.ncl.cs.group1.clientapi.test.Receiver;
-import uk.ac.ncl.cs.group1.clientapi.test.Sender;
 
 import java.io.*;
 import java.security.NoSuchAlgorithmException;
@@ -38,10 +36,12 @@ public class Test {
 //        Thread.sleep(2000);
 //        thread1.start();
 //        thread2.start();
+        final String senderName = "ff9";
+        final String receiverName = "ff10";
         final File file = new File("testfile");
         Register register = new RegisterImpl();
-        KeyPairStore keyPairStore1 = register.register("newSender1");
-        KeyPairStore keyPairStore2 = register.register("newReceiver1");
+        KeyPairStore keyPairStore1 = register.register(senderName);
+        KeyPairStore keyPairStore2 = register.register(receiverName);
         final DocSender docSender = new DocSenderImpl(keyPairStore1);
         final DocReceive docReceive = new DocReceiveImpl(keyPairStore2);
         Runnable runnable1 = new Runnable() {
@@ -49,7 +49,7 @@ public class Test {
             public void run() {
 
                 try {
-                    UUID uuid = docSender.sendDoc(file,"newReceiver1") ;
+                    UUID uuid = docSender.sendDoc(file,receiverName) ;
                     docSender.receiveReceipt(1000,uuid,new DefaultReceiptCallBack(new File("D:\\")));
                 } catch (IOException e) {
                     e.printStackTrace();

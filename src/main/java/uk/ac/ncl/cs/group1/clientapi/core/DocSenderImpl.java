@@ -13,6 +13,7 @@ import uk.ac.ncl.cs.group1.clientapi.DocSender;
 import uk.ac.ncl.cs.group1.clientapi.Resource;
 import uk.ac.ncl.cs.group1.clientapi.TTPURL;
 import uk.ac.ncl.cs.group1.clientapi.callback.ReceiptCallBack;
+import uk.ac.ncl.cs.group1.clientapi.clientserver.GsonHelper;
 import uk.ac.ncl.cs.group1.clientapi.clientserver.MyRestTemplate;
 import uk.ac.ncl.cs.group1.clientapi.entity.Phase1ResponseEntity;
 import uk.ac.ncl.cs.group1.clientapi.entity.Phase3RequestEntity;
@@ -69,7 +70,7 @@ public class DocSenderImpl extends Resource implements DocSender {
             public void run() {
                 int i = 10;
                 while(i>0){
-                    log.info("begin receive");
+                    log.info("begin receive phase5");
                     String myUrl = TTPURL.phase5SigUrl+"/"+uuid;
                     ResponseEntity<String> entity1 = restTemplate.postForEntity(myUrl,null,String.class);
                     if(entity1.getStatusCode() != HttpStatus.OK){
@@ -80,9 +81,10 @@ public class DocSenderImpl extends Resource implements DocSender {
                         i++;
                         continue;
                     }
-                    Gson gson = new Gson();
+                    Gson gson = GsonHelper.customGson;
                     Phase3RequestEntity result = gson.fromJson(entity1.getBody(), Phase3RequestEntity.class);
-                    callBack.getReceipt(result.getReceiptHash(),uuid.toString());
+                    callBack.getReceipt(Base64Coder.decode(result.getReceiptHash()),uuid.toString());
+                    break;
                 }
             }
         };
