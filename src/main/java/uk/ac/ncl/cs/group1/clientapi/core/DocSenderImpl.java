@@ -63,12 +63,12 @@ public class DocSenderImpl extends Resource implements DocSender {
     }
 
     @Override
-    public void receiveReceipt(final long intervalTime,final UUID uuid,final ReceiptCallBack callBack) {
+    public void receiveReceipt(final long intervalTime,final int times,final UUID uuid,final ReceiptCallBack callBack) {
 
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                int i = 10;
+                int i = times;
                 while(i>0){
                     log.info("begin receive phase5");
                     String myUrl = TTPURL.phase5SigUrl+"/"+uuid;

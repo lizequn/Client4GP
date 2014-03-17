@@ -36,8 +36,8 @@ public class Test {
 //        Thread.sleep(2000);
 //        thread1.start();
 //        thread2.start();
-        final String senderName = "ff9";
-        final String receiverName = "ff10";
+        final String senderName = "aaaa1";
+        final String receiverName = "aaaa2";
         final File file = new File("testfile");
         Register register = new RegisterImpl();
         KeyPairStore keyPairStore1 = register.register(senderName);
@@ -50,7 +50,7 @@ public class Test {
 
                 try {
                     UUID uuid = docSender.sendDoc(file,receiverName) ;
-                    docSender.receiveReceipt(1000,uuid,new DefaultReceiptCallBack(new File("D:\\")));
+                    docSender.receiveReceipt(1000,10,uuid,new DefaultReceiptCallBack(new File("D:\\")));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

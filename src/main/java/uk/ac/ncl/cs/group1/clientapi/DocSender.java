@@ -13,6 +13,6 @@ import java.util.UUID;
  */
 public interface DocSender {
     UUID sendDoc(File file,String address) throws IOException;
-    void receiveReceipt(long intervalTime,UUID uuid,ReceiptCallBack callBack);
+    void receiveReceipt(long intervalTime,int times,UUID uuid,ReceiptCallBack callBack);
 
 }
