@@ -30,7 +30,6 @@ public class RegisterImpl extends Resource implements Register {
         //register
         String newUrl = TTPURL.registerUrl+"/"+id;
         ResponseEntity<String> infoEntity = restTemplate.postForEntity(newUrl,null, String.class);
-        //todo
         if (infoEntity.getStatusCode()!= HttpStatus.OK){
             throw new IllegalArgumentException(infoEntity.getBody());
         }
