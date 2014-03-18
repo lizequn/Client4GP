@@ -37,7 +37,22 @@ public class HashUtil {
     }
 
     public static String calHash(byte [] s){
-        return calHash(new String(s));
+        MessageDigest messageDigest = null;
+        try {
+            messageDigest = MessageDigest.getInstance("SHA-256");
+            messageDigest.update(s);
+            byte [] hashCode = messageDigest.digest();
+            //change to HEX
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < hashCode.length; i++) {
+                sb.append(Integer.toString((hashCode[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            //never happens
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static String calHashFromFile(File file) throws IOException {

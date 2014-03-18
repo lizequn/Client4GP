@@ -36,9 +36,9 @@ public class Test {
 //        Thread.sleep(2000);
 //        thread1.start();
 //        thread2.start();
-        final String senderName = "aaaa1";
-        final String receiverName = "aaaa2";
-        final File file = new File("testfile");
+        final String senderName = "test122d23";
+        final String receiverName = "test12d245";
+        final File file = new File("example1.pdf");
         Register register = new RegisterImpl();
         KeyPairStore keyPairStore1 = register.register(senderName);
         KeyPairStore keyPairStore2 = register.register(receiverName);
