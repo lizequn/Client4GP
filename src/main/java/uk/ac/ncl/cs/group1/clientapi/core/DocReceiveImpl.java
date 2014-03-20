@@ -1,5 +1,6 @@
 package uk.ac.ncl.cs.group1.clientapi.core;
 
+import com.google.gson.Gson;
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -14,10 +15,12 @@ import uk.ac.ncl.cs.group1.clientapi.TTPURL;
 import uk.ac.ncl.cs.group1.clientapi.callback.CheckCallBack;
 import uk.ac.ncl.cs.group1.clientapi.callback.FileStore;
 import uk.ac.ncl.cs.group1.clientapi.callback.ReceiptCallBack;
+import uk.ac.ncl.cs.group1.clientapi.clientserver.GsonHelper;
 import uk.ac.ncl.cs.group1.clientapi.clientserver.MyRestTemplate;
 import uk.ac.ncl.cs.group1.clientapi.entity.GetMyExchangeResponseEntity;
 import uk.ac.ncl.cs.group1.clientapi.entity.Phase1RequestEntity;
 import uk.ac.ncl.cs.group1.clientapi.entity.Phase3RequestEntity;
+import uk.ac.ncl.cs.group1.clientapi.entity.PublicKeyEntity;
 import uk.ac.ncl.cs.group1.clientapi.util.Base64Coder;
 import uk.ac.ncl.cs.group1.clientapi.util.HashUtil;
 import uk.ac.ncl.cs.group1.clientapi.util.SignUtil;
@@ -106,38 +109,56 @@ public class DocReceiveImpl extends Resource implements DocReceive {
         String myUrl2 = TTPURL.phase3Url+"/"+keyPairStore.getId()+"/"+uuid;
         Phase3RequestEntity entity = new Phase3RequestEntity();
         entity.setReceiptHash(Base64Coder.encode(sigB));
-//        RequestCallback requestCallback = new RequestCallback() {
-//
-//            @Override
-//            public void doWithRequest(ClientHttpRequest clientHttpRequest) throws IOException {
-//
-//                System.out.println(clientHttpRequest.getHeaders());
-//                //String fileName = clientHttpRequest.getHeaders().get("FileName").get(0);
-//                InputStream fis = new FileInputStream(new File("result1"));
-//                IOUtils.copy(fis, clientHttpRequest.getBody());
-//            }
-//        };
-//        final HttpMessageConverterExtractor<String> responseExtractor = new HttpMessageConverterExtractor<String>(String.class,restTemplate.getMessageConverters());
-        // restTemplate.execute(myUrl2, HttpMethod.POST,requestCallback,responseExtractor);
         ResponseEntity<byte[]> result =  restTemplate.postForEntity(myUrl2,entity,byte[].class);
         if(result.getStatusCode() != HttpStatus.OK){
             throw new IllegalStateException(new String(result.getBody()));
         }
-
-        receiptCallBack.getReceipt(bytes,uuid.toString()+".rec");
-        fileStore.storeFile(result.getBody(),uuid.toString());
+        System.out.println(result.getHeaders());
+        String filename =result.getHeaders().get("FileName").get(0);
+        receiptCallBack.getReceipt(bytes,filename+".rec");
+        fileStore.storeFile(result.getBody(),filename);
         log.info("finish ID "+uuid);
     }
 
     @Override
-    public boolean verifyFileWithReceipt(File file, byte[] receipt) {
-        //todo
-       return true;
+    public PublicKeyEntity getPublicKey(String id) {
+        log.info("get public key "+id);
+        String url = TTPURL.getPublicKeyUrl+"/"+id;
+
+        ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
+
+        if (responseEntity.getStatusCode()!= HttpStatus.OK){
+            throw new IllegalArgumentException(responseEntity.getBody());
+        }
+        Gson gson = GsonHelper.customGson;
+        return gson.fromJson(responseEntity.getBody(),PublicKeyEntity.class);
     }
 
     @Override
-    public boolean verifyFileWithReceipt(File file, File receipt) {
-        //todo
+    public boolean verifyFileWithReceipt(File file, byte[] receipt,PublicKeyEntity entity) throws IOException {
+        String recHash = new String(SignUtil.unSign(Base64Coder.decode(entity.getPublicKey()),receipt));
+        String fileHash = HashUtil.calHashFromFile(file);
+        return recHash.equals(fileHash);
+    }
+
+    @Override
+    public boolean verifyFileWithReceipt(File file, File receipt,PublicKeyEntity entity) throws IOException {
+        FileInputStream stream = new FileInputStream(receipt);
+        byte[] bytes = IOUtils.toByteArray(stream);
+        stream.close();
+        return verifyFileWithReceipt(file,bytes,entity);
+    }
+
+    @Override
+    public boolean resolve(UUID uuid, FileStore fileStore) {
+        String url = TTPURL.receiverResolveUrl+"/"+ uuid.toString();
+        ResponseEntity<byte[]> result =  restTemplate.getForEntity(url, byte[].class);
+        if(result.getStatusCode() != HttpStatus.OK){
+            throw new IllegalStateException(new String(result.getBody()));
+        }
+        System.out.println(result.getHeaders());
+        String filename =result.getHeaders().get("FileName").get(0);
+        fileStore.storeFile(result.getBody(),filename);
         return true;
     }
 }

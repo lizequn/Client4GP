@@ -1,5 +1,6 @@
 package uk.ac.ncl.cs.group1.clientapi.core;
 
+import org.apache.commons.io.IOUtils;
 import uk.ac.ncl.cs.group1.clientapi.util.KeyGenerator;
 import uk.ac.ncl.cs.group1.clientapi.util.SignUtil;
 
@@ -75,13 +76,14 @@ public class KeyPairStore {
             byte[] privateByte = {};
             byte[] idByte = {};
             FileInputStream inputStream = new FileInputStream(publicName);
-            inputStream.read(publicByte);
+            publicByte = IOUtils.toByteArray(inputStream);
+
             inputStream.close();
             inputStream = new FileInputStream(privateName);
-            inputStream.read(privateByte);
+            privateByte = IOUtils.toByteArray(inputStream);
             inputStream.close();
             inputStream = new FileInputStream(id);
-            inputStream.read(idByte);
+            idByte = IOUtils.toByteArray(inputStream);
             inputStream.close();
             return new KeyPairStore(new String(idByte), KeyGenerator.unserializeedPrivateKey(privateByte),KeyGenerator.unserializedPublicKey(publicByte));
 

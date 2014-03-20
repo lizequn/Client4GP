@@ -1,6 +1,7 @@
 package uk.ac.ncl.cs.group1.clientapi.core;
 
 import com.google.gson.Gson;
+import org.apache.commons.io.IOUtils;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -17,12 +18,14 @@ import uk.ac.ncl.cs.group1.clientapi.clientserver.GsonHelper;
 import uk.ac.ncl.cs.group1.clientapi.clientserver.MyRestTemplate;
 import uk.ac.ncl.cs.group1.clientapi.entity.Phase1ResponseEntity;
 import uk.ac.ncl.cs.group1.clientapi.entity.Phase3RequestEntity;
+import uk.ac.ncl.cs.group1.clientapi.entity.PublicKeyEntity;
 import uk.ac.ncl.cs.group1.clientapi.util.Base64Coder;
 import uk.ac.ncl.cs.group1.clientapi.util.HashUtil;
+import uk.ac.ncl.cs.group1.clientapi.util.KeyGenerator;
 import uk.ac.ncl.cs.group1.clientapi.util.SignUtil;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.security.PublicKey;
 import java.util.UUID;
 
 /**
@@ -84,10 +87,66 @@ public class DocSenderImpl extends Resource implements DocSender {
                     Gson gson = GsonHelper.customGson;
                     Phase3RequestEntity result = gson.fromJson(entity1.getBody(), Phase3RequestEntity.class);
                     callBack.getReceipt(Base64Coder.decode(result.getReceiptHash()),uuid.toString());
+                    log.info("finish phase5");
                     break;
                 }
             }
         };
         new Thread(runnable).start();
+    }
+
+    @Override
+    public PublicKeyEntity getPublicKey(String id) {
+        //initRegister
+        log.info("get public key "+id);
+        String url = TTPURL.getPublicKeyUrl+"/"+id;
+
+        ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
+
+        if (responseEntity.getStatusCode()!= HttpStatus.OK){
+            throw new IllegalArgumentException(responseEntity.getBody());
+        }
+        Gson gson = GsonHelper.customGson;
+        return gson.fromJson(responseEntity.getBody(),PublicKeyEntity.class);
+    }
+
+    @Override
+    public boolean checkSignature(File file, File receipt, PublicKeyEntity entity) {
+        try {
+            FileInputStream stream = new FileInputStream(receipt);
+            byte[] bytes = IOUtils.toByteArray(stream);
+            stream.close();
+            return checkSignature(file, bytes, entity);
+        } catch (IOException e) {
+            throw new IllegalArgumentException("file not exist");
+        }
+    }
+
+    @Override
+    public boolean checkSignature(File file, byte[] receipt, PublicKeyEntity entity) {
+        try {
+            String str = HashUtil.calHashFromFile(file);
+            byte[] bytes = SignUtil.sign(keyPairStore.getPrivateKey(),str.getBytes());
+            String result = HashUtil.calHash(bytes);
+            PublicKey key = KeyGenerator.unserializedPublicKey(Base64Coder.decode(entity.getPublicKey()));
+            String getResult = new String(SignUtil.unSign(key,receipt));
+            return result.equals(getResult);
+        } catch (IOException e) {
+            throw new IllegalArgumentException("file not exist");
+        }
+    }
+
+    @Override
+    public boolean resolve(UUID uuid, ReceiptCallBack callBack) {
+        String url = TTPURL.senderResolveUrl+"/"+ uuid.toString();
+        ResponseEntity<String> result =  restTemplate.getForEntity(url,String.class);
+        if(result.getStatusCode() != HttpStatus.OK){
+            throw new IllegalStateException(result.getBody());
+        }
+        Gson gson = GsonHelper.customGson;
+        Phase3RequestEntity phase3RequestEntity = gson.fromJson(result.getBody(),Phase3RequestEntity.class);
+        String rec = phase3RequestEntity.getReceiptHash();
+        callBack.getReceipt(Base64Coder.decode(rec),uuid.toString());
+        return true;
     }
 }

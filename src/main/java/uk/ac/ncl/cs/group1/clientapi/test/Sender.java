@@ -70,7 +70,7 @@
 //
 //        //initRegister
 //        log.info("phase1 begin");
-//        File file = new File("testfile");
+//        File file = new File("testfile.txt");
 //        String unsignedHash = HashUtil.calHashFromFile(file);
 //        byte[] bytes = SignUtil.sign(privateKey,unsignedHash.getBytes());
 //        System.out.println(Base64Coder.encode(bytes));
@@ -79,7 +79,7 @@
 //        MultiValueMap<String,Object> pairs = new LinkedMultiValueMap<>();
 //        pairs.add("fromAddress",this.name);
 //        pairs.add("toAddress",this.destination);
-//        pairs.add("name", "testfile");
+//        pairs.add("name", "testfile.txt");
 //        pairs.add("signedHash",Base64Coder.encode(bytes));
 //        pairs.add("file", new FileSystemResource(file));
 //

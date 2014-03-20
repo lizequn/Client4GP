@@ -12,4 +12,8 @@ public class TTPURL {
     public final static String phase5SigUrl= base+"/phase5";
     public final static String phase2Url = base+"/phase2";
     public final static String phase3Url = base+"/phase3";
+    public final static String getPublicKeyUrl = base+"/getpublickey";
+    public final static String senderResolveUrl = base+"/resolve/sender";
+    public final static String receiverResolveUrl = base+"/resolve/receiver";
+
 }

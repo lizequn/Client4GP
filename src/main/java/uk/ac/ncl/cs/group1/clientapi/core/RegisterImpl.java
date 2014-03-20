@@ -33,7 +33,7 @@ public class RegisterImpl extends Resource implements Register {
         if (infoEntity.getStatusCode()!= HttpStatus.OK){
             throw new IllegalArgumentException(infoEntity.getBody());
         }
-        log.info("1-->register end "+ id);
+        log.info("register end "+ id);
         //get private key and public key
         Gson gson = GsonHelper.customGson;
         RegisterResponseEntity entity1 = gson.fromJson(infoEntity.getBody(),RegisterResponseEntity.class);
