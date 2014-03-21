@@ -56,12 +56,12 @@ public class DocSenderImpl extends Resource implements DocSender {
         pairs.add("file", new FileSystemResource(file));
 
         HttpEntity<MultiValueMap<String,Object>> req = new HttpEntity<>(pairs);
-        ResponseEntity<Phase1ResponseEntity> responseEntity = restTemplate.postForEntity(TTPURL.phase1RequestUrl, req, Phase1ResponseEntity.class);
-        //todo
+        ResponseEntity<String> responseEntity = restTemplate.postForEntity(TTPURL.phase1RequestUrl, req, String.class);
         if (responseEntity.getStatusCode()!= HttpStatus.OK){
-            throw new IllegalArgumentException("1");
+            throw new IllegalArgumentException(responseEntity.getBody());
         }
-        Phase1ResponseEntity entity = responseEntity.getBody();
+
+        Phase1ResponseEntity entity = GsonHelper.customGson.fromJson(responseEntity.getBody(),Phase1ResponseEntity.class);
         return entity.getUuid();
     }
 
@@ -76,13 +76,16 @@ public class DocSenderImpl extends Resource implements DocSender {
                     log.info("begin receive phase5");
                     String myUrl = TTPURL.phase5SigUrl+"/"+uuid;
                     ResponseEntity<String> entity1 = restTemplate.postForEntity(myUrl,null,String.class);
-                    if(entity1.getStatusCode() != HttpStatus.OK){
+                    if(entity1.getStatusCode() == HttpStatus.NOT_MODIFIED){
                         try {
                             Thread.sleep(intervalTime);
                         } catch (InterruptedException ignored) {
                         }
                         i++;
                         continue;
+                    }
+                    if(entity1.getStatusCode() != HttpStatus.OK){
+                        throw new IllegalStateException(entity1.getBody());
                     }
                     Gson gson = GsonHelper.customGson;
                     Phase3RequestEntity result = gson.fromJson(entity1.getBody(), Phase3RequestEntity.class);
@@ -141,6 +144,7 @@ public class DocSenderImpl extends Resource implements DocSender {
         String url = TTPURL.senderResolveUrl+"/"+ uuid.toString();
         ResponseEntity<String> result =  restTemplate.getForEntity(url,String.class);
         if(result.getStatusCode() != HttpStatus.OK){
+            log.info(result.getBody());
             throw new IllegalStateException(result.getBody());
         }
         Gson gson = GsonHelper.customGson;

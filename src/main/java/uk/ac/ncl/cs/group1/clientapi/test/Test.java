@@ -78,7 +78,7 @@ public class Test {
         Runnable runnable2 = new Runnable() {
             @Override
             public void run() {
-                docReceive.asyCheckExistCommunication(new DefaultCheckCallBack(docReceive),1000);
+                docReceive.asyCheckExistCommunication(new DefaultCheckCallBack(docReceive),1000,1000);
             }
         };
        new Thread(runnable1).start();

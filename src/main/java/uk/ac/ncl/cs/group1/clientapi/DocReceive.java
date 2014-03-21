@@ -18,8 +18,8 @@ import java.util.UUID;
  */
 public interface DocReceive {
     List<UUID> checkExistCommunication();
-    void asyCheckExistCommunication(CheckCallBack callBack,long intervalTime);
-    void getFileAndReceipt(UUID uuid,FileStore fileStore,ReceiptCallBack receiptCallBack);
+    List<UUID> asyCheckExistCommunication(CheckCallBack callBack,long intervalTime,int times);
+    UUID getFileAndReceipt(UUID uuid,FileStore fileStore,ReceiptCallBack receiptCallBack);
     PublicKeyEntity getPublicKey(String id);
     boolean verifyFileWithReceipt(File file,byte[] receipt,PublicKeyEntity entity) throws IOException;
     boolean verifyFileWithReceipt(File file,File receipt,PublicKeyEntity entity) throws IOException;

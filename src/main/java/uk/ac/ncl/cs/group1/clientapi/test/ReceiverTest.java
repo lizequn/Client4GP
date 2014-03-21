@@ -3,7 +3,10 @@ package uk.ac.ncl.cs.group1.clientapi.test;
 import org.apache.log4j.Logger;
 import uk.ac.ncl.cs.group1.clientapi.DocReceive;
 import uk.ac.ncl.cs.group1.clientapi.Register;
+import uk.ac.ncl.cs.group1.clientapi.callback.CheckCallBack;
 import uk.ac.ncl.cs.group1.clientapi.callback.defaultimpl.DefaultCheckCallBack;
+import uk.ac.ncl.cs.group1.clientapi.callback.defaultimpl.DefaultFileStore;
+import uk.ac.ncl.cs.group1.clientapi.callback.defaultimpl.DefaultReceiptCallBack;
 import uk.ac.ncl.cs.group1.clientapi.core.DocReceiveImpl;
 import uk.ac.ncl.cs.group1.clientapi.core.KeyPairStore;
 import uk.ac.ncl.cs.group1.clientapi.core.RegisterImpl;
@@ -11,6 +14,8 @@ import uk.ac.ncl.cs.group1.clientapi.core.RegisterImpl;
 import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * @Auther: Li Zequn
@@ -43,14 +48,15 @@ public class ReceiverTest {
         }
 
         final DocReceive docReceive = new DocReceiveImpl(keyPairStore2);
-
-        Runnable runnable2 = new Runnable() {
+        CheckCallBack checkCallBack = new CheckCallBack() {
             @Override
-            public void run() {
-                docReceive.asyCheckExistCommunication(new DefaultCheckCallBack(docReceive),1000);
-            }
-        };
-        new Thread(runnable2).start();
+            public void getUUID(List<UUID> lists) {
+                for(UUID uuid:lists){
+                    docReceive.getFileAndReceipt(uuid,new DefaultFileStore(new File("D:\\test\\receiver")),new DefaultReceiptCallBack(new File("D:\\test\\receiver")));
+                }
 
+            }
+        } ;
+        docReceive.asyCheckExistCommunication(checkCallBack,1000,1000);
     }
 }

@@ -28,6 +28,7 @@ import uk.ac.ncl.cs.group1.clientapi.util.SignUtil;
 import java.io.*;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author ZequnLi
@@ -45,11 +46,11 @@ public class DocReceiveImpl extends Resource implements DocReceive {
     public List<UUID> checkExistCommunication() {
         log.info("get my exchange "+keyPairStore.getId());
         String myUrl = TTPURL.getMyExchangeUrl+"/"+keyPairStore.getId();
-        ResponseEntity<GetMyExchangeResponseEntity> response =  restTemplate.postForEntity(myUrl,null, GetMyExchangeResponseEntity.class);
+        ResponseEntity<String> response =  restTemplate.postForEntity(myUrl,null, String.class);
         if(response.getStatusCode() != HttpStatus.OK){
-            throw new IllegalStateException();
+            throw new IllegalStateException(response.getBody());
         }
-        GetMyExchangeResponseEntity exchangeResponseEntity = response.getBody();
+        GetMyExchangeResponseEntity exchangeResponseEntity = GsonHelper.customGson.fromJson(response.getBody(),GetMyExchangeResponseEntity.class);
         List<UUID> list = exchangeResponseEntity.getLists();
 //        restTemplate.postForEntity(myUrl,req, GetMyExchangeResponseEntity.class);
         if(list.size()<=0){
@@ -60,20 +61,22 @@ public class DocReceiveImpl extends Resource implements DocReceive {
     }
 
     @Override
-    public void asyCheckExistCommunication(final CheckCallBack callBack,final long intervalTime) {
+    public List<UUID> asyCheckExistCommunication(final CheckCallBack callBack,final long intervalTime,final int times) {
+        final AtomicReference<List<UUID>> result = new AtomicReference<>();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                int i =100;
+                int i =times;
                 while(i>0)  {
                     log.info("get my exchange "+keyPairStore.getId());
                     String myUrl = TTPURL.getMyExchangeUrl+"/"+keyPairStore.getId();
-                    ResponseEntity<GetMyExchangeResponseEntity> response =  restTemplate.postForEntity(myUrl,null, GetMyExchangeResponseEntity.class);
+                    ResponseEntity<String> response =  restTemplate.postForEntity(myUrl,null, String.class);
                     if(response.getStatusCode() != HttpStatus.OK){
-                        throw new IllegalStateException();
+                        throw new IllegalStateException(response.getBody());
                     }
-                    GetMyExchangeResponseEntity exchangeResponseEntity = response.getBody();
+                    GetMyExchangeResponseEntity exchangeResponseEntity =GsonHelper.customGson.fromJson(response.getBody(),GetMyExchangeResponseEntity.class);
                     List<UUID> list = exchangeResponseEntity.getLists();
+                    result.set(list);
                     if(list.size()<=0){
                         try {
                             Thread.sleep(intervalTime);
@@ -89,18 +92,20 @@ public class DocReceiveImpl extends Resource implements DocReceive {
             }
         };
         new Thread(runnable).start();
-
+        return result.get();
     }
 
     @Override
-    public void getFileAndReceipt(UUID uuid,FileStore fileStore, ReceiptCallBack receiptCallBack) {
+    public UUID getFileAndReceipt(UUID uuid,FileStore fileStore, ReceiptCallBack receiptCallBack) {
         log.info("begin get file and receipt ID:"+uuid);
         String myUrl1 = TTPURL.phase2Url+"/"+keyPairStore.getId()+"/"+uuid;
-        ResponseEntity<Phase1RequestEntity> responseEntity = restTemplate.postForEntity(myUrl1,null,Phase1RequestEntity.class);
+        ResponseEntity<String> responseEntity = restTemplate.postForEntity(myUrl1,null,String.class);
         if(responseEntity.getStatusCode() != HttpStatus.OK){
-            throw new IllegalStateException();
+            throw new IllegalStateException(responseEntity.getBody());
         }
-        Phase1RequestEntity requestEntity = responseEntity.getBody();
+        Phase1RequestEntity requestEntity = GsonHelper.customGson.fromJson(responseEntity.getBody(),Phase1RequestEntity.class
+
+        );
 
 
         byte[] bytes = Base64Coder.decode(requestEntity.getSignedHash());
@@ -118,6 +123,7 @@ public class DocReceiveImpl extends Resource implements DocReceive {
         receiptCallBack.getReceipt(bytes,filename+".rec");
         fileStore.storeFile(result.getBody(),filename);
         log.info("finish ID "+uuid);
+        return uuid;
     }
 
     @Override

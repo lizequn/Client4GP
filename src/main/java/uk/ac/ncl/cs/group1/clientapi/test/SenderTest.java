@@ -45,21 +45,10 @@ public class SenderTest {
         }
 
         final DocSender docSender = new DocSenderImpl(keyPairStore1);
-        Runnable runnable1 = new Runnable() {
-            @Override
-            public void run() {
 
-                try {
-                    UUID uuid = docSender.sendDoc(file,receiverName) ;
-                    docSender.receiveReceipt(1000,10,uuid,new DefaultReceiptCallBack(new File("D:\\")));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            UUID uuid = docSender.sendDoc(file,receiverName) ;
+            docSender.receiveReceipt(1000,10,uuid,new DefaultReceiptCallBack(new File("D:\\test\\sender")));
 
-            }
-        } ;
-
-        new Thread(runnable1).start();
 
     }
 }
