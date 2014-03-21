@@ -73,6 +73,7 @@ public class DocSenderImpl extends Resource implements DocSender {
             public void run() {
                 int i = times;
                 while(i>0){
+                    System.out.println("waiting receipt"+times);
                     log.info("begin receive phase5");
                     String myUrl = TTPURL.phase5SigUrl+"/"+uuid;
                     ResponseEntity<String> entity1 = restTemplate.postForEntity(myUrl,null,String.class);
@@ -90,6 +91,7 @@ public class DocSenderImpl extends Resource implements DocSender {
                     Gson gson = GsonHelper.customGson;
                     Phase3RequestEntity result = gson.fromJson(entity1.getBody(), Phase3RequestEntity.class);
                     callBack.getReceipt(Base64Coder.decode(result.getReceiptHash()),uuid.toString());
+                    System.out.println("Finish phase5");
                     log.info("finish phase5");
                     break;
                 }

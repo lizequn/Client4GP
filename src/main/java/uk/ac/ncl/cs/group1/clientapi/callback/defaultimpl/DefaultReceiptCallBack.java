@@ -27,6 +27,7 @@ public class DefaultReceiptCallBack implements ReceiptCallBack {
             bufferedOutputStream.flush();
             bufferedOutputStream.close();
             outputStream.close();
+            System.out.println("finished");
         } catch (IOException e) {
             e.printStackTrace();
         }

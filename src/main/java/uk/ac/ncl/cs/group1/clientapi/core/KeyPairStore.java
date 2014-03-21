@@ -94,6 +94,32 @@ public class KeyPairStore {
         return null;
     }
 
+    public static KeyPairStore getFromFile(String id,File publicName,File privateName){
+        if(!publicName.exists()){
+            throw new IllegalArgumentException("file not exist");
+        }
+        if(!privateName.exists()){
+            throw new IllegalArgumentException("file not exist");
+        }
+
+        try {
+            byte[] publicByte={};
+            byte[] privateByte = {};
+            FileInputStream inputStream = new FileInputStream(publicName);
+            publicByte = IOUtils.toByteArray(inputStream);
+
+            inputStream.close();
+            inputStream = new FileInputStream(privateName);
+            privateByte = IOUtils.toByteArray(inputStream);
+            inputStream.close();
+            return new KeyPairStore(id, KeyGenerator.unserializeedPrivateKey(privateByte),KeyGenerator.unserializedPublicKey(publicByte));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public String getId() {
         return id;
