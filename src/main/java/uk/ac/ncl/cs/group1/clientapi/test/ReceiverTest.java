@@ -54,7 +54,6 @@ public class ReceiverTest {
                 for(UUID uuid:lists){
                     docReceive.getFileAndReceipt(uuid,new DefaultFileStore(new File("D:\\test\\receiver")),new DefaultReceiptCallBack(new File("D:\\test\\receiver")));
                 }
-
             }
         } ;
         docReceive.asyCheckExistCommunication(checkCallBack,1000,1000);

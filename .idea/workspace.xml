@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/CommandTransfer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_3_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_3_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/callback/defaultimpl/SessionStoreCallBackImpl.java" />
-      <change type="DELETED" beforePath="D:\javaProject2\Client4GP1\src\main\java\uk\ac\ncl\cs\group1\clientapi\Sender\SessionInfo.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\javaProject2\Client4GP1\src\main\java\uk\ac\ncl\cs\group1\clientapi\Sender\SessionManager.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\javaProject2\Client4GP1\src\main\java\uk\ac\ncl\cs\group1\clientapi\test\Receiver.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\javaProject2\Client4GP1\src\main\java\uk\ac\ncl\cs\group1\clientapi\test\Sender.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ClientApi.iml" afterPath="$PROJECT_DIR$/ClientApi.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/callback/defaultimpl/DefaultReceiptCallBack.java" afterPath="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/callback/defaultimpl/DefaultReceiptCallBack.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/core/DocSenderImpl.java" afterPath="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/core/DocSenderImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/core/KeyPairStore.java" afterPath="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/core/KeyPairStore.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/callback/SessionStoreCallBack.java" afterPath="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/callback/SessionStoreCallBack.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/test/Test.java" afterPath="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/test/Test.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/test/ReceiverTest.java" afterPath="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/test/ReceiverTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="D:\javaProject2\Client4GP1\.idea\libraries\Maven__commons_logging_commons_logging_1_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_1_3.xml" />
     </list>
     <ignored path="ClientApi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,7 +17,7 @@
     <file path="/test4RSA.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1394708371776" ignored="false" />
     <file path="$PROJECT_DIR$/../groupproject/src/main/java/uk/ac/ncl/cs/group1/cryptoutil/KeyGenerator.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1393202647731" ignored="false" />
     <file path="$PROJECT_DIR$/../groupproject/src/main/java/uk/ac/ncl/cs/group1/controller/RegisterController.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1393779994339" ignored="false" />
-    <file path="/RegisterController.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1394453630863" ignored="false" />
+    <file path="/RegisterController.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395682473647" ignored="false" />
     <file path="/log4j.properties" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1394561141497" ignored="false" />
     <file path="$PROJECT_DIR$/../groupproject/src/main/resources/log4j.properties" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1393200314657" ignored="false" />
     <file path="$PROJECT_DIR$/../groupproject/src/main/java/uk/ac/ncl/cs/group1/entity/RegisterInfoEntity.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1393200388070" ignored="false" />
@@ -47,7 +32,7 @@
     <file path="/InitRequestController.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1393206433710" ignored="false" />
     <file path="/InitRequestServiceImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1393781553724" ignored="false" />
     <file path="/InitResponseEntity.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1393206680287" ignored="false" />
-    <file path="/Dummy.txt" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395421192081" ignored="false" />
+    <file path="/Dummy.txt" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395667941992" ignored="false" />
     <file path="$PROJECT_DIR$/../Login/src/main/java/uk/ac/ncl/cs/zequnli/interceptor/LoginInterceptor.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1393268162201" ignored="false" />
     <file path="/LoginInterceptor.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1393268151154" ignored="false" />
     <file path="$PROJECT_DIR$/../groupproject/src/main/java/uk/ac/ncl/cs/group1/interceptor/HeaderInterceptor.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1393276245549" ignored="false" />
@@ -91,18 +76,18 @@
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/services/Phrase1Service.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1394453224437" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/services/Phase1Service.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395170300257" ignored="false" />
     <file path="/Phase1Service.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1394467085283" ignored="false" />
-    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/contoller/RegisterController.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1394453637908" ignored="false" />
+    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/contoller/RegisterController.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395682539461" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/Communication/FairExchangeCommunication.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1394720216739" ignored="false" />
-    <file path="/FairExchangeCommunication.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395241304364" ignored="false" />
+    <file path="/FairExchangeCommunication.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395674450222" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/Communication/FairExchangeStage.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1394454212900" ignored="false" />
-    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/dao/LogDao.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395170300257" ignored="false" />
-    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/dao/FileDao.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1394454292101" ignored="false" />
-    <file path="/LogDao.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1394454309526" ignored="false" />
+    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/dao/LogDao.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395670505085" ignored="false" />
+    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/dao/FileDao.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395671117994" ignored="false" />
+    <file path="/LogDao.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395670505085" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/Communication/CommunicationManager.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395157399542" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/Communication/impl/CommunicationManagerImple.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1394457589704" ignored="false" />
     <file path="/CommunicationManagerImple.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1394457589704" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/Communication/impl/CommunicationManagerImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1394466107682" ignored="false" />
-    <file path="/CommunicationManager.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395403252494" ignored="false" />
+    <file path="/CommunicationManager.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395669567197" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/services/impl/Phase1ServiceImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395321132252" ignored="false" />
     <file path="/Phase1ServiceImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395240764163" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/dao/RegisterDao.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1394463671975" ignored="false" />
@@ -148,7 +133,7 @@
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/entity/Phase3RequestEntity.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1394717966166" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/services/impl/Phase3ServiceImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395321132252" ignored="false" />
     <file path="/Phase3ServiceImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395240808166" ignored="false" />
-    <file path="$PROJECT_DIR$/../GroupProject1/pom.xml" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395433386079" ignored="false" />
+    <file path="$PROJECT_DIR$/../GroupProject1/pom.xml" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395681582583" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/cyptoutil/HashUtil.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395069223912" ignored="false" />
     <file path="/MyRequestHeader.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1394738180478" ignored="false" />
     <file path="/MyRestTemplate.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1394735998525" ignored="false" />
@@ -193,13 +178,13 @@
     <file path="$PROJECT_DIR$/../Group1Project/src/main/java/uk/ac/ncl/cs/groupproject/services/impl/Phase3ServiceImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395018171159" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/test.txt" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395054545077" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/cyptoutil/Base64Coder.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395071430858" ignored="false" />
-    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/dao/impl/LogDaoImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395437775675" ignored="false" />
+    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/dao/impl/LogDaoImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395680944520" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/Exception/CommuincationException.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395144720073" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/Exception/CommunicationException.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395144801291" ignored="false" />
     <file path="/CommunicationException.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395144800560" ignored="false" />
-    <file path="/LogDaoImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395437769280" ignored="false" />
+    <file path="/LogDaoImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395680940313" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/Communication/LogManager.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395162275634" ignored="false" />
-    <file path="/LogManager.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395237589428" ignored="false" />
+    <file path="/LogManager.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395676978578" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/services/Bootstrap.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395170300257" ignored="false" />
     <file path="/Bootstrap.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395161780387" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395162245421" ignored="false" />
@@ -218,10 +203,10 @@
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/services/GetPublicKeyService.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395168264822" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/services/impl/GetPublicKeyServiceImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395248490417" ignored="false" />
     <file path="/GetPublicKeyServiceImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395168761530" ignored="false" />
-    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/communication/LogManager.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395416013142" ignored="false" />
-    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/communication/CommunicationManager.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395403272520" ignored="false" />
+    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/communication/LogManager.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395678701264" ignored="false" />
+    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/communication/CommunicationManager.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395669626390" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/services/impl/Phase5ServiceImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395321132252" ignored="false" />
-    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/communication/FairExchangeCommunication.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395248490417" ignored="false" />
+    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/communication/FairExchangeCommunication.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395674450610" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/communication/FairExchangeStage.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395248691633" ignored="false" />
     <file path="/SenderTest.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395419052594" ignored="false" />
     <file path="/ReceiverTest.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395418422219" ignored="false" />
@@ -238,8 +223,8 @@
     <file path="/CommunicationFInishedException.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395319554213" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/Exception/CommunicationFinishedException.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395319590762" ignored="false" />
     <file path="/CommunicationFinishedException.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395319525727" ignored="false" />
-    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/dao/impl/FileDaoImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395328011838" ignored="false" />
-    <file path="/FileDaoImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395327968321" ignored="false" />
+    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/dao/impl/FileDaoImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395671363732" ignored="false" />
+    <file path="/FileDaoImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395671356660" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/contoller/ResolveController.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395418114927" ignored="false" />
     <file path="/ResolveController.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395418113792" ignored="false" />
     <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/services/ResovleService.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395328548766" ignored="false" />
@@ -253,6 +238,12 @@
     <file path="/CommandTransfer.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395430169112" ignored="false" />
     <file path="/SessionStoreCallBackImpl.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395429502563" ignored="false" />
     <file path="/MyCustomClientHttpRequestFactory.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395433707003" ignored="false" />
+    <file path="$PROJECT_DIR$/../GroupProject1/src/main/resources/AwsCredentials.properties" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395682565505" ignored="false" />
+    <file path="/FileDao.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395671116515" ignored="false" />
+    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/mail/mailutil.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395681875336" ignored="false" />
+    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/mail/Mailutil.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395681886250" ignored="false" />
+    <file path="$PROJECT_DIR$/../GroupProject1/src/main/java/uk/ac/ncl/cs/groupproject/mail/MailUtil.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395682072121" ignored="false" />
+    <file path="/MailUtil.java" changelist="9c2aee85-c2f0-479a-8495-2aa9ebaa911d" time="1395682070795" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -316,100 +307,29 @@
       <file leaf-file-name="SenderTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/test/SenderTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="12" selection-start="1711" selection-end="1873" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommandTransfer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/CommandTransfer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="49" selection-start="2007" selection-end="2007" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="43" selection-start="1191" selection-end="1191" vertical-scroll-proportion="0.0">
-              <folding>
-                <marker date="1395435250642" expanded="true" signature="2397:2596" placeholder="..." />
-                <marker date="1395435250642" expanded="true" signature="2432:2565" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Test.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/test/Test.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="63" selection-start="2504" selection-end="2504" vertical-scroll-proportion="0.7074592">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1980#2163#0" expanded="true" />
-                <element signature="e#2152#2153#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DocSender.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/DocSender.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="9" selection-start="442" selection-end="442" vertical-scroll-proportion="0.0">
+            <state line="32" column="26" selection-start="1275" selection-end="1275" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DocSenderImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/core/DocSenderImpl.java">
+      <file leaf-file-name="FlieUtil.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/util/FlieUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="93" column="53" selection-start="4391" selection-end="4391" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#3149#4510#0" expanded="true" />
-                <element signature="e#4499#4500#0" expanded="true" />
-                <element signature="method#getPublicKey#0;class#DocSenderImpl#0" expanded="false" />
-                <element signature="method#checkSignature#1;class#DocSenderImpl#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SessionStoreCallBack.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/callback/SessionStoreCallBack.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="42" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SessionStoreCallBackImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/callback/defaultimpl/SessionStoreCallBackImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="20" selection-start="1397" selection-end="1397" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DefaultReceiptCallBack.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/callback/defaultimpl/DefaultReceiptCallBack.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="40" selection-start="1004" selection-end="1004" vertical-scroll-proportion="0.0">
+            <state line="8" column="21" selection-start="123" selection-end="123" vertical-scroll-proportion="0.1548975">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReceiverTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/test/ReceiverTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="58" column="9" selection-start="2423" selection-end="2423" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#2068#2411#0" expanded="true" />
+                <element signature="e#2400#2401#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -437,7 +357,6 @@
         <option value="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/callback/CheckCallBack.java" />
         <option value="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/core/DocReceiveImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/DocReceive.java" />
-        <option value="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/test/ReceiverTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/test/SenderTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/core/KeyPairStore.java" />
         <option value="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/callback/SessionStoreCallBack.java" />
@@ -448,6 +367,7 @@
         <option value="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/clientserver/MyCustomClientHttpRequestFactory.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/test/Test.java" />
+        <option value="$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/test/ReceiverTest.java" />
       </list>
     </option>
   </component>
@@ -525,10 +445,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="2576" />
-    <option name="height" value="1416" />
+    <option name="x" value="850" />
+    <option name="y" value="18" />
+    <option name="width" value="1682" />
+    <option name="height" value="1400" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -558,6 +478,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -651,133 +572,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ClientApi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Client4GP1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clientapi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ClientApi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Client4GP1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clientapi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clientserver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ClientApi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Client4GP1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clientapi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="callback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ClientApi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Client4GP1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clientapi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="callback" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="defaultimpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -794,9 +590,9 @@
     <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="options.searchVisible" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -811,7 +607,7 @@
       <recent name="E:\ideaproject\ClientApi\src\main\java\uk\ac\ncl\cs\group1\clientapi\uitl" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.ReceiverTest">
     <configuration default="false" name="Test" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -936,6 +732,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -962,19 +771,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -1021,10 +817,10 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Application.Test" />
-        <item index="1" class="java.lang.String" itemvalue="Application.CommandTransfer" />
-        <item index="2" class="java.lang.String" itemvalue="Application.ReceiverTest" />
-        <item index="3" class="java.lang.String" itemvalue="Application.SenderTest" />
+        <item index="0" class="java.lang.String" itemvalue="Application.ReceiverTest" />
+        <item index="1" class="java.lang.String" itemvalue="Application.SenderTest" />
+        <item index="2" class="java.lang.String" itemvalue="Application.Test" />
+        <item index="3" class="java.lang.String" itemvalue="Application.CommandTransfer" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -1109,7 +905,11 @@
       <created>1395421196661</created>
       <updated>1395421196661</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="finish 1&#10;">
+      <created>1395438739250</created>
+      <updated>1395438739250</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1133,13 +933,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
-    <editor active="false" />
+    <frame x="850" y="18" width="1682" height="1400" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32746196" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290559" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1152,14 +951,15 @@
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298639" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3308121" sideWeight="0.73819053" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46478093" sideWeight="0.73819053" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15923567" sideWeight="0.73819053" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26180944" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24721879" sideWeight="0.7347932" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2652068" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290559" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1237,18 +1037,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/callback/defaultimpl/DefaultFileStore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="677" selection-end="677" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/callback/defaultimpl/DefaultCheckCallBack.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="129" selection-start="627" selection-end="715" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="23" column="129" selection-start="627" selection-end="715" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/DocReceive.java">
@@ -1262,19 +1053,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="122" column="0" selection-start="5817" selection-end="5817" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#3044#4342#0" expanded="true" />
-            <element signature="e#4331#4332#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/test/ReceiverTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="85" selection-start="2287" selection-end="2305" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2068#2412#0" expanded="true" />
-            <element signature="e#2401#2402#0" expanded="true" />
+            <element signature="e#3044#4342#0" expanded="false" />
+            <element signature="e#4331#4332#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1286,27 +1066,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/test/SenderTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="12" selection-start="1711" selection-end="1873" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/callback/SessionStoreCallBack.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="42" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="12" column="42" selection-start="300" selection-end="300" vertical-scroll-proportion="0.16929461">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/callback/defaultimpl/DefaultReceiptCallBack.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="40" selection-start="1004" selection-end="1004" vertical-scroll-proportion="0.0">
+        <state line="29" column="40" selection-start="1004" selection-end="1004" vertical-scroll-proportion="0.40912864">
           <folding />
         </state>
       </provider>
@@ -1318,33 +1087,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/core/DocSenderImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="53" selection-start="4391" selection-end="4391" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#3149#4510#0" expanded="true" />
-            <element signature="e#4499#4500#0" expanded="true" />
-            <element signature="method#getPublicKey#0;class#DocSenderImpl#0" expanded="false" />
-            <element signature="method#checkSignature#1;class#DocSenderImpl#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/callback/defaultimpl/SessionStoreCallBackImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="20" selection-start="1397" selection-end="1397" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="47" column="20" selection-start="1397" selection-end="1397" vertical-scroll-proportion="0.66307056">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/CommandTransfer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="48" column="49" selection-start="2007" selection-end="2007" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1352,20 +1105,54 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="33" column="43" selection-start="1191" selection-end="1191" vertical-scroll-proportion="0.0">
           <folding>
-            <marker date="1395435250642" expanded="true" signature="2397:2596" placeholder="..." />
-            <marker date="1395435250642" expanded="true" signature="2432:2565" placeholder="..." />
+            <marker date="1395435250642" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1395435250642" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/test/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="63" selection-start="2504" selection-end="2504" vertical-scroll-proportion="0.7074592">
+        <state line="58" column="63" selection-start="2504" selection-end="2504" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/Resource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="30" selection-start="174" selection-end="174" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/core/DocSenderImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="40" selection-start="1957" selection-end="1957" vertical-scroll-proportion="0.17114094">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/test/ReceiverTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="9" selection-start="2423" selection-end="2423" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1980#2163#0" expanded="true" />
-            <element signature="e#2152#2153#0" expanded="true" />
+            <element signature="e#2068#2411#0" expanded="true" />
+            <element signature="e#2400#2401#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/test/SenderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="26" selection-start="1275" selection-end="1275" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/uk/ac/ncl/cs/group1/clientapi/util/FlieUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="21" selection-start="123" selection-end="123" vertical-scroll-proportion="0.1548975">
+          <folding />
         </state>
       </provider>
     </entry>
