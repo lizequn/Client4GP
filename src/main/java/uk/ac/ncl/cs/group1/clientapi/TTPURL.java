@@ -17,5 +17,6 @@ public class TTPURL {
     public final static String getPublicKeyUrl = base+"/getpublickey";
     public final static String senderResolveUrl = base+"/resolve/sender";
     public final static String receiverResolveUrl = base+"/resolve/receiver";
+    public final static String abortUrl = base+"/abort";
 
 }

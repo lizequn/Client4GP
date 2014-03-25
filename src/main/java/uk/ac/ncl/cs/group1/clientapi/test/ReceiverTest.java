@@ -33,8 +33,8 @@ public class ReceiverTest {
 //        Thread.sleep(2000);
 //        thread1.start();
 //        thread2.start();
-        final String senderName = "lzq910123@gmail.com";
-        final String receiverName = "anirudhagarwal0910@gmail.com";
+        final String receiverName = "lzq_179@163.com";
+       // final String receiverName = "anirudhagarwal0910@gmail.com";
 
         Register register = new RegisterImpl();
 

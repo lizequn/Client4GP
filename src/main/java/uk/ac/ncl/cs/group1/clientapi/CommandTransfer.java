@@ -1,6 +1,7 @@
 package uk.ac.ncl.cs.group1.clientapi;
 
 import uk.ac.ncl.cs.group1.clientapi.callback.defaultimpl.DefaultCheckCallBack;
+import uk.ac.ncl.cs.group1.clientapi.callback.defaultimpl.DefaultFileStore;
 import uk.ac.ncl.cs.group1.clientapi.callback.defaultimpl.DefaultReceiptCallBack;
 import uk.ac.ncl.cs.group1.clientapi.core.DocReceiveImpl;
 import uk.ac.ncl.cs.group1.clientapi.core.DocSenderImpl;
@@ -20,7 +21,7 @@ public class CommandTransfer {
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String [] args) throws IOException {
         if(args.length != 1) {
-            System.out.println("specify sender , receiver, abort or resolve");
+            System.out.println("specify register sender , receiver, abort , resolve or verify");
             System.exit(-1);
         }
         String myId;
@@ -97,9 +98,81 @@ public class CommandTransfer {
             int t = Integer.parseInt(str);
             println("begin receive");
             receive.asyCheckExistCommunication(new DefaultCheckCallBack(receive),1000,t);
-        } else {
-            System.out.println("specify sender or receiver");
-            System.exit(-1);
+        } else if (args[0].equals("resolve")){
+            println("input your id ");
+            otherId = scanner.nextLine();
+            println("check if key file exists(name should be "+otherId+".puk and"+otherId+".pik)");
+            KeyPairStore keyPairStore;
+            try{
+                keyPairStore = KeyPairStore.getFromFile(otherId,new File(otherId+".puk"),new File(otherId+".pik"));
+                println("get key file");
+            } catch (IllegalArgumentException e){
+                println("key file not exist register new user");
+                Register register = new RegisterImpl();
+                keyPairStore = register.register(otherId);
+                keyPairStore.store2File(new File(otherId),new File(otherId+".puk"),new File(otherId+".pik"));
+                println("register success and store key pair");
+            }
+            String act;
+            do{
+                println("you are a sender or receiver ?");
+                act = scanner.nextLine();
+            }while (!(act.equals("sender")||act.equals("receiver")));
+            String uuid;
+            do{
+                println("please input the transaction id ?");
+                uuid = scanner.nextLine();
+            }while (uuid.equals(""));
+            if(act.equals("sender")){
+                DocSender sender = new DocSenderImpl(keyPairStore);
+                sender.resolve(UUID.fromString(uuid), new DefaultReceiptCallBack(new File("./")));
+            }else {
+                DocReceive receive = new DocReceiveImpl(keyPairStore);
+                receive.resolve(UUID.fromString(uuid), new DefaultFileStore(new File("./")));
+            }
+        }else if(args[0].equals("verify")){
+            //todo
+        }else if(args[0].equals("register")){
+            println("input your id ");
+            otherId = scanner.nextLine();
+            println("check if key file exists(name should be "+otherId+".puk and"+otherId+".pik)");
+            KeyPairStore keyPairStore;
+            try{
+                keyPairStore = KeyPairStore.getFromFile(otherId,new File(otherId+".puk"),new File(otherId+".pik"));
+                println("get key file");
+            } catch (IllegalArgumentException e){
+                println("key file not exist register new user");
+                Register register = new RegisterImpl();
+                keyPairStore = register.register(otherId);
+                keyPairStore.store2File(new File(otherId),new File(otherId+".puk"),new File(otherId+".pik"));
+                println("register success and store key pair");
+            }
+        } else if(args[0].equals("abort")){
+            println("input your id ");
+            otherId = scanner.nextLine();
+            println("check if key file exists(name should be "+otherId+".puk and"+otherId+".pik)");
+            KeyPairStore keyPairStore;
+            try{
+                keyPairStore = KeyPairStore.getFromFile(otherId,new File(otherId+".puk"),new File(otherId+".pik"));
+                println("get key file");
+            } catch (IllegalArgumentException e){
+                println("key file not exist register new user");
+                Register register = new RegisterImpl();
+                keyPairStore = register.register(otherId);
+                keyPairStore.store2File(new File(otherId),new File(otherId+".puk"),new File(otherId+".pik"));
+                println("register success and store key pair");
+            }
+            DocSender sender = new DocSenderImpl(keyPairStore);
+            String uuid;
+            do{
+                println("please input the transaction id ?");
+                uuid = scanner.nextLine();
+            }while (uuid.equals(""));
+            if(sender.abort(UUID.fromString(uuid))){
+                System.out.println("abort success");
+            }else {
+                System.out.println("abort failed");
+            }
         }
     }
     private static void println(String mes){

@@ -32,7 +32,7 @@ public class SenderTest {
 //        thread1.start();
 //        thread2.start();
         final String senderName = "lzq910123@gmail.com";
-        final String receiverName = "anirudhagarwal0910@gmail.com";
+        final String receiverName = "lzq_179@163.com";
         final File file = new File("testfile.txt");
         Register register = new RegisterImpl();
         KeyPairStore keyPairStore1;

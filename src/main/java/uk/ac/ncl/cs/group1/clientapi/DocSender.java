@@ -19,4 +19,5 @@ public interface DocSender {
     boolean checkSignature(File file,File receipt,PublicKeyEntity entity);
     boolean checkSignature(File file,byte[] receipt,PublicKeyEntity entity);
     boolean resolve(UUID uuid,ReceiptCallBack callBack);
+    boolean abort(UUID uuid);
 }

@@ -16,6 +16,7 @@ import uk.ac.ncl.cs.group1.clientapi.TTPURL;
 import uk.ac.ncl.cs.group1.clientapi.callback.ReceiptCallBack;
 import uk.ac.ncl.cs.group1.clientapi.clientserver.GsonHelper;
 import uk.ac.ncl.cs.group1.clientapi.clientserver.MyRestTemplate;
+import uk.ac.ncl.cs.group1.clientapi.entity.AbortEntity;
 import uk.ac.ncl.cs.group1.clientapi.entity.Phase1ResponseEntity;
 import uk.ac.ncl.cs.group1.clientapi.entity.Phase3RequestEntity;
 import uk.ac.ncl.cs.group1.clientapi.entity.PublicKeyEntity;
@@ -156,6 +157,25 @@ public class DocSenderImpl extends Resource implements DocSender {
         Phase3RequestEntity phase3RequestEntity = gson.fromJson(result.getBody(),Phase3RequestEntity.class);
         String rec = phase3RequestEntity.getReceiptHash();
         callBack.getReceipt(Base64Coder.decode(rec),uuid.toString());
+        return true;
+    }
+
+    @Override
+    public boolean abort(UUID uuid) {
+        String url = TTPURL.abortUrl+"/"+ uuid.toString();
+        ResponseEntity<String> result =  restTemplate.getForEntity(url,String.class);
+        if(result.getStatusCode() != HttpStatus.OK){
+            log.info(result.getBody());
+            throw new IllegalStateException(result.getBody());
+        }
+        Gson gson = GsonHelper.customGson;
+        AbortEntity entity = gson.fromJson(result.getBody(),AbortEntity.class);
+        String rec = entity.getMessage();
+        boolean success = entity.isSuccess();
+        if(!success){
+            System.out.println(rec);
+            return false;
+        }
         return true;
     }
 }
