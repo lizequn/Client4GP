@@ -41,7 +41,7 @@ public class DocSenderImpl extends Resource implements DocSender {
     }
 
     @Override
-    public UUID sendDoc(File file, String address) throws IOException {
+    public UUID sendDoc(File file, String address,boolean email) throws IOException {
         log.info("send doc begin "+ keyPairStore.getId());
         //initRegister
         log.info("phase1 begin");
@@ -56,11 +56,14 @@ public class DocSenderImpl extends Resource implements DocSender {
         pairs.add("file", new FileSystemResource(file));
 
         HttpEntity<MultiValueMap<String,Object>> req = new HttpEntity<>(pairs);
-        ResponseEntity<String> responseEntity = restTemplate.postForEntity(TTPURL.phase1RequestUrl, req, String.class);
+        String url = TTPURL.phase1RequestUrl4Normal;
+        if(email){
+            url = TTPURL.phase1RequestUrl4Email;
+        }
+        ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, req, String.class);
         if (responseEntity.getStatusCode()!= HttpStatus.OK){
             throw new IllegalArgumentException(responseEntity.getBody());
         }
-
         Phase1ResponseEntity entity = GsonHelper.customGson.fromJson(responseEntity.getBody(),Phase1ResponseEntity.class);
         return entity.getUuid();
     }
@@ -104,7 +107,7 @@ public class DocSenderImpl extends Resource implements DocSender {
     public PublicKeyEntity getPublicKey(String id) {
         //initRegister
         log.info("get public key "+id);
-        String url = TTPURL.getPublicKeyUrl+"/"+id;
+        String url = TTPURL.getPublicKeyUrl+"/"+id+".ignore";
 
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
 

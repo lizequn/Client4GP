@@ -13,7 +13,7 @@ import java.util.UUID;
  * Date: 14/03/14
  */
 public interface DocSender {
-    UUID sendDoc(File file,String address) throws IOException;
+    UUID sendDoc(File file,String address,boolean email) throws IOException;
     void receiveReceipt(long intervalTime,int times,UUID uuid,ReceiptCallBack callBack);
     PublicKeyEntity getPublicKey(String id);
     boolean checkSignature(File file,File receipt,PublicKeyEntity entity);

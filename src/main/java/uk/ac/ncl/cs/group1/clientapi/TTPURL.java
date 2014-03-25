@@ -8,7 +8,8 @@ public class TTPURL {
     public final static String base = "http://localhost:8080";
     public final static String registerUrl = base+"/register";
     public final static String getMyExchangeUrl = base+"/getmyexchange";
-    public final static String phase1RequestUrl = base+"/phase1";
+    public final static String phase1RequestUrl4Email = base+"/phase1/email";
+    public final static String phase1RequestUrl4Normal = base+"/phase1/normal";
     public final static String phase5SigUrl= base+"/phase5";
     public final static String phase2Url = base+"/phase2";
     public final static String phase3Url = base+"/phase3";

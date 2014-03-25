@@ -31,8 +31,8 @@ public class SenderTest {
 //        Thread.sleep(2000);
 //        thread1.start();
 //        thread2.start();
-        final String senderName = "sendera1";
-        final String receiverName = "receiveb1";
+        final String senderName = "lzq910123@gmail.com";
+        final String receiverName = "anirudhagarwal0910@gmail.com";
         final File file = new File("testfile.txt");
         Register register = new RegisterImpl();
         KeyPairStore keyPairStore1;
@@ -46,7 +46,7 @@ public class SenderTest {
 
         final DocSender docSender = new DocSenderImpl(keyPairStore1);
 
-            UUID uuid = docSender.sendDoc(file,receiverName) ;
+            UUID uuid = docSender.sendDoc(file,receiverName,true) ;
             docSender.receiveReceipt(1000,10,uuid,new DefaultReceiptCallBack(new File("D:\\test\\sender")));
 
 

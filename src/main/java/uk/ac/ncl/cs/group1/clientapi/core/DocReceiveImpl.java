@@ -45,7 +45,7 @@ public class DocReceiveImpl extends Resource implements DocReceive {
     @Override
     public List<UUID> checkExistCommunication() {
         log.info("get my exchange "+keyPairStore.getId());
-        String myUrl = TTPURL.getMyExchangeUrl+"/"+keyPairStore.getId();
+        String myUrl = TTPURL.getMyExchangeUrl+"/"+keyPairStore.getId()+".ignore";
         ResponseEntity<String> response =  restTemplate.postForEntity(myUrl,null, String.class);
         if(response.getStatusCode() != HttpStatus.OK){
             throw new IllegalStateException(response.getBody());
@@ -69,7 +69,7 @@ public class DocReceiveImpl extends Resource implements DocReceive {
                 int i =times;
                 while(i>0)  {
                     log.info("get my exchange "+keyPairStore.getId());
-                    String myUrl = TTPURL.getMyExchangeUrl+"/"+keyPairStore.getId();
+                    String myUrl = TTPURL.getMyExchangeUrl+"/"+keyPairStore.getId()+".ignore";
                     ResponseEntity<String> response =  restTemplate.postForEntity(myUrl,null, String.class);
                     if(response.getStatusCode() != HttpStatus.OK){
                         throw new IllegalStateException(response.getBody());
@@ -98,7 +98,7 @@ public class DocReceiveImpl extends Resource implements DocReceive {
     @Override
     public UUID getFileAndReceipt(UUID uuid,FileStore fileStore, ReceiptCallBack receiptCallBack) {
         log.info("begin get file and receipt ID:"+uuid);
-        String myUrl1 = TTPURL.phase2Url+"/"+keyPairStore.getId()+"/"+uuid;
+        String myUrl1 = TTPURL.phase2Url+"/"+uuid;
         ResponseEntity<String> responseEntity = restTemplate.postForEntity(myUrl1,null,String.class);
         if(responseEntity.getStatusCode() != HttpStatus.OK){
             throw new IllegalStateException(responseEntity.getBody());
@@ -111,7 +111,7 @@ public class DocReceiveImpl extends Resource implements DocReceive {
         byte[] bytes = Base64Coder.decode(requestEntity.getSignedHash());
         String hashedBytes = HashUtil.calHash(bytes);
         byte[] sigB = SignUtil.sign(keyPairStore.getPrivateKey(),hashedBytes.getBytes());
-        String myUrl2 = TTPURL.phase3Url+"/"+keyPairStore.getId()+"/"+uuid;
+        String myUrl2 = TTPURL.phase3Url+"/"+uuid;
         Phase3RequestEntity entity = new Phase3RequestEntity();
         entity.setReceiptHash(Base64Coder.encode(sigB));
         ResponseEntity<byte[]> result =  restTemplate.postForEntity(myUrl2,entity,byte[].class);
@@ -129,7 +129,7 @@ public class DocReceiveImpl extends Resource implements DocReceive {
     @Override
     public PublicKeyEntity getPublicKey(String id) {
         log.info("get public key "+id);
-        String url = TTPURL.getPublicKeyUrl+"/"+id;
+        String url = TTPURL.getPublicKeyUrl+"/"+id+".ignore";
 
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
 

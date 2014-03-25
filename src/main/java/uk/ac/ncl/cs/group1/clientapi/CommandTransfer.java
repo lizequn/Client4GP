@@ -59,7 +59,7 @@ public class CommandTransfer {
                 receipt = new File(receiptPath);
             }while (!receipt.exists());
             println("begin send doc");
-            UUID uuid = docSender.sendDoc(file,otherId);
+            UUID uuid = docSender.sendDoc(file,otherId,true);
             println("send doc finished");
             println("begin receive receipt");
             docSender.receiveReceipt(1000,1000,uuid,new DefaultReceiptCallBack(receipt));

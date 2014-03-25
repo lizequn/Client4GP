@@ -17,6 +17,7 @@ public class MyRestTemplate {
         List<ClientHttpRequestInterceptor> list = new ArrayList<ClientHttpRequestInterceptor>();
         list.add(new MyRequestHeader(name, authCode));
         restTemplate.setInterceptors(list);
+        restTemplate.setErrorHandler(new CustomerErrorHandler());
         return restTemplate;
     }
 }
