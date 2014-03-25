@@ -5,7 +5,8 @@ package uk.ac.ncl.cs.group1.clientapi;
  * Date: 14/03/14
  */
 public class TTPURL {
-    public final static String base = "http://localhost:8080";
+//    public final static String base = "http://localhost:8080";
+    public final static String base = "http://groupproject-group1.elasticbeanstalk.com";
     public final static String registerUrl = base+"/register";
     public final static String getMyExchangeUrl = base+"/getmyexchange";
     public final static String phase1RequestUrl4Email = base+"/phase1/email";

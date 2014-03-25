@@ -20,7 +20,7 @@ public class CommandTransfer {
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String [] args) throws IOException {
         if(args.length != 1) {
-            System.out.println("specify sender or receiver");
+            System.out.println("specify sender , receiver, abort or resolve");
             System.exit(-1);
         }
         String myId;
@@ -58,8 +58,19 @@ public class CommandTransfer {
                 receiptPath = scanner.nextLine();
                 receipt = new File(receiptPath);
             }while (!receipt.exists());
+            String email;
+            do{
+                println("do you want to get notification by email(Y or N)");
+                email = scanner.nextLine();
+            }while (!(email.equals("Y")||email.equals("N")));
+
             println("begin send doc");
-            UUID uuid = docSender.sendDoc(file,otherId,true);
+            UUID uuid;
+            if(email.equals("Y")){
+                uuid = docSender.sendDoc(file,otherId,true);
+            } else {
+                uuid = docSender.sendDoc(file,otherId,false);
+            }
             println("send doc finished");
             println("begin receive receipt");
             docSender.receiveReceipt(1000,1000,uuid,new DefaultReceiptCallBack(receipt));
