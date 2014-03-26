@@ -6,7 +6,7 @@
 
     <groupId>ClientApi</groupId>
     <artifactId>ClientApi</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>2.0</version>
      <dependencies>
          <dependency>
              <groupId>org.springframework</groupId>
@@ -70,7 +70,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>uk.ac.ncl.cs.group1.clientapi.CommandTransfer</mainClass>
+                            <mainClass>uk.ac.ncl.cs.group1.clientapi1.CommandTransfer</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
